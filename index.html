@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking Application - JIRA Project Documentation</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #172B4D;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 { color: #0052CC; border-bottom: 3px solid #0052CC; padding-bottom: 10px; }
+        h2 { color: #0747A6; border-bottom: 2px solid #0747A6; padding-bottom: 8px; margin-top: 40px; }
+        h3 { color: #0052CC; margin-top: 30px; }
+        h4 { color: #42526E; margin-top: 20px; }
+        .info-panel {
+            background-color: #DEEBFF;
+            border-left: 4px solid #0052CC;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .warning-panel {
+            background-color: #FFFAE6;
+            border-left: 4px solid #FF991F;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .success-panel {
+            background-color: #E3FCEF;
+            border-left: 4px solid #00875A;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th {
+            background-color: #0052CC;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        td {
+            border: 1px solid #DFE1E6;
+            padding: 10px;
+        }
+        tr:nth-child(even) {
+            background-color: #F4F5F7;
+        }
+        .epic-card {
+            background-color: #F4F5F7;
+            border-radius: 3px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #6554C0;
+        }
+        .story-card {
+            background-color: #FFFFFF;
+            border: 1px solid #DFE1E6;
+            border-radius: 3px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .acceptance-criteria {
+            background-color: #F4F5F7;
+            padding: 15px;
+            border-radius: 3px;
+            margin: 10px 0;
+        }
+        .label {
+            display: inline-block;
+            background-color: #DFE1E6;
+            color: #42526E;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            margin: 2px;
+        }
+        .label-critical { background-color: #FFEBE6; color: #BF2600; }
+        .label-high { background-color: #FFFAE6; color: #FF991F; }
+        .label-medium { background-color: #DEEBFF; color: #0052CC; }
+        .label-compliance { background-color: #E3FCEF; color: #00875A; }
+        ul, ol { margin-left: 20px; }
+        .toc { background-color: #F4F5F7; padding: 20px; border-radius: 3px; margin: 20px 0; }
+        .toc ul { list-style: none; }
+        .toc a { text-decoration: none; color: #0052CC; }
+        .toc a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+<h1>🏦 Banking Application - JIRA Project Documentation</h1>
+
+<div class="info-panel">
+    <strong>Project Overview</strong><br>
+    A comprehensive digital banking platform with 10 core epics covering customer onboarding, account management, payments, security, compliance, and advanced financial services. Estimated delivery: 10-12 months with 1000 story points.
+</div>
+
+<div class="toc">
+    <h3>📑 Table of Contents</h3>
+    <ul>
+        <li><a href="#roadmap">1. Product Roadmap</a></li>
+        <li><a href="#requirements">2. Product Requirements</a></li>
+        <li><a href="#epics">3. Product Epics Overview</a></li>
+        <li><a href="#epic-details">4. Epic Details & User Stories</a></li>
+        <li><a href="#compliance">5. Compliance & Security Framework</a></li>
+        <li><a href="#import">6. JIRA Import Instructions</a></li>
+    </ul>
+</div>
+
+<h2 id="roadmap">1. 📅 Product Roadmap</h2>
+
+<p>The banking application will be delivered in <strong>5 phases over 10-12 months</strong>, prioritizing security, compliance, and core banking features first.</p>
+
+<table>
+    <tr>
+        <th>Phase</th>
+        <th>Duration</th>
+        <th>Timeline</th>
+        <th>Focus Areas</th>
+        <th>Deliverables</th>
+    </tr>
+    <tr>
+        <td><strong>Phase 1: MVP Foundation</strong></td>
+        <td>8 weeks</td>
+        <td>Months 1-2</td>
+        <td>Security, Onboarding, Compliance</td>
+        <td>
+            • User registration with KYC<br>
+            • MFA & biometric authentication<br>
+            • View account balances<br>
+            • View transaction history<br>
+            • Basic security controls<br>
+            • Compliance framework
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Phase 2: Core Banking</strong></td>
+        <td>8 weeks</td>
+        <td>Months 3-4</td>
+        <td>Transfers, Payments, Notifications</td>
+        <td>
+            • Internal account transfers<br>
+            • Add beneficiaries<br>
+            • Transaction alerts<br>
+            • Email/SMS notifications<br>
+            • Fraud detection (basic)
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Phase 3: Enhanced Services</strong></td>
+        <td>8 weeks</td>
+        <td>Months 5-6</td>
+        <td>Cards, Support, External Payments</td>
+        <td>
+            • Card management<br>
+            • External transfers<br>
+            • Bill payments<br>
+            • In-app customer support<br>
+            • Scheduled/recurring payments
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Phase 4: Advanced Features</strong></td>
+        <td>8 weeks</td>
+        <td>Months 7-8</td>
+        <td>Loans, Investments</td>
+        <td>
+            • Loan applications & approvals<br>
+            • Investment portfolio management<br>
+            • Trading capabilities<br>
+            • Financial advisory features
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Phase 5: Optimization</strong></td>
+        <td>8 weeks</td>
+        <td>Months 9-10</td>
+        <td>Performance, Advanced Features</td>
+        <td>
+            • Performance optimization<br>
+            • Advanced fraud detection<br>
+            • Enhanced compliance reporting<br>
+            • Analytics & insights
+        </td>
+    </tr>
+</table>
+
+<div class="success-panel">
+    <strong>✓ Key Milestones</strong><br>
+    • MVP Launch: End of Month 2<br>
+    • Core Banking Live: End of Month 4<br>
+    • Full Service Launch: End of Month 8<br>
+    • Production Ready: End of Month 10
+</div>
+
+<h2 id="requirements">2. 📋 Product Requirements</h2>
+
+<h3>2.1 Functional Requirements</h3>
+
+<table>
+    <tr>
+        <th>Category</th>
+        <th>Requirements</th>
+        <th>Priority</th>
+    </tr>
+    <tr>
+        <td><strong>User Authentication</strong></td>
+        <td>
+            • Multi-factor authentication (MFA)<br>
+            • Biometric login (fingerprint/face recognition)<br>
+            • Password reset with security questions<br>
+            • Session timeout after 15 minutes inactivity
+        </td>
+        <td><span class="label label-critical">Critical</span></td>
+    </tr>
+    <tr>
+        <td><strong>Account Management</strong></td>
+        <td>
+            • View real-time account balances<br>
+            • Transaction history (last 12 months)<br>
+            • Download account statements (PDF)<br>
+            • Account nickname customization
+        </td>
+        <td><span class="label label-high">High</span></td>
+    </tr>
+    <tr>
+        <td><strong>Transfers & Payments</strong></td>
+        <td>
+            • Internal transfers (between own accounts)<br>
+            • External transfers (ACH/wire)<br>
+            • Bill payments<br>
+            • Scheduled/recurring payments<br>
+            • Beneficiary management
+        </td>
+        <td><span class="label label-critical">Critical</span></td>
+    </tr>
+    <tr>
+        <td><strong>Card Services</strong></td>
+        <td>
+            • Card activation/deactivation<br>
+            • Set spending limits<br>
+            • PIN management<br>
+            • Virtual card generation<br>
+            • Transaction controls
+        </td>
+        <td><span class="label label-high">High</span></td>
+    </tr>
+    <tr>
+        <td><strong>Customer Support</strong></td>
+        <td>
+            • In-app chat support<br>
+            • Service request tracking<br>
+            • FAQ/knowledge base<br>
+            • Document upload for disputes
+        </td>
+        <td><span class="label label-medium">Medium</span></td>
+    </tr>
+</table>
+
+<h3>2.2 Non-Functional Requirements</h3>
+
+<table>
+    <tr>
+        <th>Category</th>
+        <th>Requirement</th>
+        <th>Target</th>
+    </tr>
+    <tr>
+        <td><strong>Performance</strong></td>
+        <td>API response time (95th percentile)</td>
+        <td>< 500ms</td>
+    </tr>
+    <tr>
+        <td><strong>Availability</strong></td>
+        <td>System uptime</td>
+        <td>99.99% SLA</td>
+    </tr>
+    <tr>
+        <td><strong>Scalability</strong></td>
+        <td>Concurrent users supported</td>
+        <td>100,000+</td>
+    </tr>
+    <tr>
+        <td><strong>Security</strong></td>
+        <td>Data encryption</td>
+        <td>TLS 1.3 in transit, AES-256 at rest</td>
+    </tr>
+    <tr>
+        <td><strong>Security</strong></td>
+        <td>Authentication</td>
+        <td>OAuth 2.0 with JWT tokens</td>
+    </tr>
+    <tr>
+        <td><strong>Compliance</strong></td>
+        <td>Audit trail retention</td>
+        <td>7 years minimum</td>
+    </tr>
+</table>
+
+<h3>2.3 Regulatory & Compliance Requirements</h3>
+
+<div class="warning-panel">
+    <strong>⚠ Mandatory Compliance Standards</strong>
+</div>
+
+<table>
+    <tr>
+        <th>Regulation</th>
+        <th>Description</th>
+        <th>Key Requirements</th>
+    </tr>
+    <tr>
+        <td><strong>KYC/AML</strong></td>
+        <td>Know Your Customer / Anti-Money Laundering</td>
+        <td>
+            • Identity verification with government-issued ID<br>
+            • Address verification (proof within 3 months)<br>
+            • Ongoing customer due diligence<br>
+            • Suspicious activity reporting (SAR)
+        </td>
+    </tr>
+    <tr>
+        <td><strong>PCI-DSS</strong></td>
+        <td>Payment Card Industry Data Security Standard</td>
+        <td>
+            • Never store full card numbers (tokenization)<br>
+            • Encrypt all cardholder data<br>
+            • Regular security assessments<br>
+            • Access control and monitoring
+        </td>
+    </tr>
+    <tr>
+        <td><strong>GDPR</strong></td>
+        <td>General Data Protection Regulation</td>
+        <td>
+            • User consent for data processing<br>
+            • Right to access personal data<br>
+            • Right to be forgotten (data deletion)<br>
+            • Data breach notification within 72 hours
+        </td>
+    </tr>
+    <tr>
+        <td><strong>SOX</strong></td>
+        <td>Sarbanes-Oxley Act</td>
+        <td>
+            • Complete audit trails for all transactions<br>
+            • Financial data accuracy and integrity<br>
+            • Internal controls documentation<br>
+            • Regular audits and compliance reporting
+        </td>
+    </tr>
+</table>
+
+<h2 id="epics">3. 🎯 Product Epics Overview</h2>
+
+<p>The banking application is organized into <strong>10 core epics</strong> representing major functional areas:</p>
+
+<table>
+    <tr>
+        <th>#</th>
+        <th>Epic Name</th>
+        <th>Story Points</th>
+        <th>Phase</th>
+        <th>Priority</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Customer Onboarding & Authentication</td>
+        <td>100 SP</td>
+        <td>Phase 1</td>
+        <td><span class="label label-critical">Critical</span></td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Account Management</td>
+        <td>80 SP</td>
+        <td>Phase 1</td>
+        <td><span class="label label-high">High</span></td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Fund Transfers & Payments</td>
+        <td>120 SP</td>
+        <td>Phase 2</td>
+        <td><span class="label label-critical">Critical</span></td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Card Management</td>
+        <td>90 SP</td>
+        <td>Phase 3</td>
+        <td><span class="label label-high">High</span></td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Security & Fraud Prevention</td>
+        <td>110 SP</td>
+        <td>Phase 1-2</td>
+        <td><span class="label label-critical">Critical</span></td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Loan & Credit Services</td>
+        <td>130 SP</td>
+        <td>Phase 4</td>
+        <td><span class="label label-medium">Medium</span></td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>Investment & Wealth Management</td>
+        <td>140 SP</td>
+        <td>Phase 4</td>
+        <td><span class="label label-medium">Medium</span></td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>Customer Support & Service</td>
+        <td>70 SP</td>
+        <td>Phase 3</td>
+        <td><span class="label label-high">High</span></td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>Notifications & Alerts</td>
+        <td>60 SP</td>
+        <td>Phase 2</td>
+        <td><span class="label label-high">High</span></td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>Regulatory Compliance & Reporting</td>
+        <td>100 SP</td>
+        <td>Phase 1</td>
+        <td><span class="label label-critical">Critical</span></td>
+    </tr>
+    <tr>
+        <td colspan="2"><strong>Total</strong></td>
+        <td><strong>1000 SP</strong></td>
+        <td colspan="2">~10-12 months (2 teams)</td>
+    </tr>
+</table>
+
+<h2 id="epic-details">4. 📦 Epic Details & User Stories</h2>
+
+<div class="epic-card">
+    <h3>EPIC-1: Customer Onboarding & Authentication (100 SP)</h3>
+    <p><strong>Description:</strong> Enable secure customer registration and identity verification compliant with KYC/AML regulations. Implement multi-factor and biometric authentication for enhanced security.</p>
+    <p><strong>Business Value:</strong> Foundation for all customer interactions. Ensures regulatory compliance and secure access to banking services.</p>
+    <p>
+        <span class="label label-compliance">KYC</span>
+        <span class="label label-compliance">AML</span>
+        <span class="label">security</span>
+        <span class="label">phase-1</span>
+        <span class="label">mvp</span>
+    </p>
+</div>
+
+<div class="story-card">
+    <h4>📘 User Story: User Registration (8 SP)</h4>
+    <p><strong>As a</strong> new customer<br>
+    <strong>I want</strong> to register for online banking<br>
+    <strong>So that</strong> I can access my accounts digitally and manage my finances online</p>
+    
+    <p><span class="label label-high">High Priority</span> <span class="label label-compliance">KYC</span> <span class="label">phase-1</span></p>
+    
+    <div class="acceptance-criteria">
+        <strong>Acceptance Criteria:</strong>
+        
+        <p><strong>Prerequisites:</strong></p>
+        <ul>
+            <li>Customer must have valid email address and personal information</li>
+            <li>Registration page must be accessible</li>
+            <li>System must be operational</li>
+        </ul>
+        
+        <p><strong>Scenario: New customer registers successfully</strong></p>
+        <ol>
+            <li>New user visits registration page</li>
+            <li>User provides valid personal information (name, email, phone, date of birth)</li>
+            <li>User creates strong password meeting security requirements (min 8 chars, uppercase, lowercase, number, special char)</li>
+            <li>User submits registration form</li>
+            <li>System validates all information</li>
+            <li>System sends verification email</li>
+            <li>User clicks verification link in email</li>
+            <li>Account is created with "pending" status</li>
+            <li>User receives welcome email</li>
+            <li>KYC verification process is automatically initiated</li>
+        </ol>
+    </div>
+    
+    <p><strong>Security Requirements:</strong></p>
+    <ul>
+        <li>Password hashing with bcrypt (salt rounds: 12)</li>
+        <li>Email verification required before account activation</li>
+        <li>CAPTCHA to prevent bot registrations</li>
+        <li>Rate limiting: max 5 registration attempts per IP per hour</li>
+    </ul>
+    
+    <p><strong>Compliance Requirements:</strong></p>
+    <ul>
+        <li>KYC: Collect minimum required information (name, DOB, address, SSN)</li>
+        <li>GDPR: User consent for data processing</li>
+        <li>Audit: Log all registration attempts with timestamp, IP address</li>
+    </ul>
+</div>
+
+<div class="story-card">
+    <h4>📘 User Story: KYC Document Upload (13 SP)</h4>
+    <p><strong>As a</strong> new customer<br>
+    <strong>I want</strong> to upload my identity documents<br>
+    <strong>So that</strong> I can complete the KYC verification process and activate my account</p>
+    
+    <p><span class="label label-critical">Critical Priority</span> <span class="label label-compliance">KYC</span> <span class="label label-compliance">compliance</span></p>
+    
+    <div class="acceptance-criteria">
+        <strong>Acceptance Criteria:</strong>
+        
+        <p><strong>Prerequisites:</strong></p>
+        <ul>
+            <li>Customer must have registered account</li>
+            <li>Customer must have valid government-issued ID</li>
+            <li>Customer must have proof of address document (dated within last 3 months)</li>
+        </ul>
+        
+        <p><strong>Scenario: Customer uploads identity documents successfully</strong></p>
+        <ol>
+            <li>Customer logs into account with "pending" status</li>
+            <li>Customer navigates to KYC document upload section</li>
+            <li>Customer selects document type (government ID)</li>
+            <li>Customer uploads clear photo or scan of ID (max 5MB, PDF/JPG/PNG)</li>
+            <li>Customer selects proof of address document type</li>
+            <li>Customer uploads proof of address (utility bill, bank statement, etc.)</li>
+            <li>All documents are encrypted with AES-256 during upload</li>
+            <li>System stores documents securely in encrypted storage</li>
+            <li>OCR automatically extracts information from documents</li>
+            <li>Compliance team is notified for manual review</li>
+            <li>Customer sees upload confirmation with reference number</li>
+            <li>Customer receives email confirmation that documents are under review</li>
+        </ol>
+    </div>
+    
+    <p><strong>Technical Requirements:</strong></p>
+    <ul>
+        <li>File upload: Max 5MB per document</li>
+        <li>Supported formats: PDF, JPG, JPEG, PNG</li>
+        <li>OCR service integration for data extraction</li>
+        <li>Document storage: encrypted S3 bucket with restricted access</li>
+    </ul>
+</div>
+
+<div class="story-card">
+    <h4>📘 User Story: Multi-Factor Authentication Setup (8 SP)</h4>
+    <p><strong>As a</strong> banking customer<br>
+    <strong>I want</strong> to set up multi-factor authentication<br>
+    <strong>So that</strong> my account is protected with an additional security layer</p>
+    
+    <p><span class="label label-critical">Critical Priority</span> <span class="label">security</span> <span class="label">mfa</span></p>
+    
+    <div class="acceptance-criteria">
+        <strong>Acceptance Criteria:</strong>
+        
+        <p><strong>Prerequisites:</strong></p>
+        <ul>
+            <li>Customer must have active account</li>
+            <li>Customer must have smartphone with authenticator app (Google Authenticator, Authy, etc.)</li>
+        </ul>
+        
+        <p><strong>Scenario: Customer enables MFA successfully</strong></p>
+        <ol>
+            <li>Customer logs into their account</li>
+            <li>Customer navigates to Security Settings</li>
+            <li>Customer selects "Enable Multi-Factor Authentication"</li>
+            <li>Customer chooses authenticator app method</li>
+            <li>System generates and displays QR code</li>
+            <li>Customer scans QR code with their authenticator app</li>
+            <li>Authenticator app displays 6-digit time-based code</li>
+            <li>Customer enters verification code into the system</li>
+            <li>System validates the code</li>
+            <li>MFA is enabled on the account</li>
+            <li>System generates 10 backup codes for emergency access</li>
+            <li>Customer must save backup codes securely</li>
+            <li>Confirmation message is displayed</li>
+        </ol>
+    </div>
+</div>
+
+<div class="story-card">
+    <h4>📘 User Story: Biometric Authentication (13 SP)</h4>
+    <p><strong>As a</strong> mobile banking user<br>
+    <strong>I want</strong> to use fingerprint or face recognition to log in<br>
+    <strong>So that</strong> I can access my account quickly and securely</p>
+    
+    <p><span class="label label-high">High Priority</span> <span class="label">biometric</span> <span class="label">mobile</span></p>
+    
+    <div class="acceptance-criteria">
+        <strong>Acceptance Criteria:</strong>
+        
+        <p><strong>Prerequisites:</strong></p>
+        <ul>
+            <li>Customer must have mobile device with biometric capabilities</li>
+            <li>Mobile banking app must be installed</li>
+            <li>Customer must have active account</li>
+        </ul>
+        
+        <p><strong>Scenario: Customer enables and uses biometric login</strong></p>
+        <ol>
+            <li>Customer has enrolled their biometric (fingerprint/face) in device settings</li>
+            <li>Customer opens the mobile banking app</li>
+            <li>App detects biometric capability is available</li>
+            <li>Customer opts to enable biometric login</li>
+            <li>Customer authenticates once with password and MFA to link biometric</li>
+            <li>App securely stores biometric enrollment status (no biometric data sent to server)</li>
+            <li>Next time customer opens app, biometric prompt appears</li>
+            <li>Customer places finger on sensor or looks at camera</li>
+            <li>Biometric is verified locally on device</li>
+            <li>If successful, customer is logged into their account</li>
+            <li>Session is created with 15-minute inactivity timeout</li>
+            <li>If biometric fails after 3 attempts, fallback to password login is required</li>
+        </ol>
+    </div>
+</div>
+
+<div class="epic-card">
+    <h3>EPIC-2: Account Management (80 SP)</h3>
+    <p><strong>Description:</strong> Provide comprehensive account viewing and management capabilities, including balance inquiry, transaction history, and statement downloads.</p>
+    <p><strong>Business Value:</strong> Core functionality for customers to monitor and manage their finances.</p>
+    <p>
+        <span class="label">core-banking</span>
+        <span class="label">accounts</span>
+        <span class="label">phase-1</span>
+    </p>
+</div>
+
+<div class="story-card">
+    <h4>📘 User Story: View Account Balance (5 SP)</h4>
+    <p><strong>As a</strong> banking customer<br>
+    <strong>I want</strong> to view my account balance<br>
+    <strong>So that</strong> I can monitor my finances and available funds</p>
+    
+    <p><span class="label label-high">High Priority</span> <span class="label">core-banking</span></p>
+    
+    <div class="acceptance-criteria">
+        <strong>Acceptance Criteria:</strong>
+        
+        <p><strong>Prerequisites:</strong></p>
+        <ul>
+            <li>Customer must be logged into account</li>
+            <li>Customer must have at least one active bank account</li>
+        </ul>
+        
+        <p><strong>Scenario: Customer views current balance</strong></p>
+        <ol>
+            <li>Customer logs into their banking account</li>
+            <li>Customer navigates to accounts page or views dashboard</li>
+            <li>System displays all linked accounts (checking, savings, credit cards)</li>
+            <li>Each account shows account type and last 4 digits of account number</li>
+            <li>Each account displays current balance prominently</li>
+            <li>Each account shows available balance vs pending balance separately</li>
+            <li>Pending transactions are indicated with count (e.g., "2 pending")</li>
+            <li>Last transaction date and amount are visible for each account</li>
+            <li>Customer can click on an account to view more details</li>
+            <li>Balance refreshes automatically or with pull-to-refresh on mobile</li>
+        </ol>
+    </div>
+</div>
+
+<div class="story-card">
+    <h4>📘 User Story: View Transaction History (8 SP)</h4>
+    <p><strong>As a</strong> banking customer<br>
+    <strong>I want</strong> to view my transaction history<br>
+    <strong>So that</strong> I can track my spending and verify transactions</p>
+    
+    <p><span class="label label-high">High Priority</span> <span class="label">transactions</span></p>
+    
+    <div class="acceptance-criteria">
+        <strong>Acceptance Criteria:</strong>
+        
+        <p><strong>Prerequisites:</strong></p>
+        <ul>
+            <li>Customer must be logged in</li>
+            <li>Customer must be viewing a specific account</li>
+        </ul>
+        
+        <p><strong>Scenario: Customer views recent transactions</strong></p>
+        <ol>
+            <li>Customer is viewing account details page</li>
+            <li>Customer clicks on "Transaction History" tab or link</li>
+            <li>System loads and displays last 30 days of transactions by default</li>
+            <li>Each transaction shows: date, merchant/description, debit/credit amount, running balance</li>
+            <li>Transactions are sorted by date with newest first</li>
+            <li>Customer can filter transactions by date range (start and end date)</li>
+            <li>Customer can filter by transaction amount (min and max)</li>
+            <li>Customer can filter by transaction type (debit, credit, transfers, payments)</li>
+            <li>Customer can search transactions by merchant name or description</li>
+            <li>System displays filtered results within 2 seconds</li>
+            <li>Customer can export filtered results as CSV</li>
+            <li>Pagination shows 25 transactions per page</li>
+        </ol>
+    </div>
+</div>
+
+<div class="story-card">
+    <h4>📘 User Story: Download Account Statement (5 SP)</h4>
+    <p><strong>As a</strong> banking customer<br>
+    <strong>I want</strong> to download my account statements<br>
+    <strong>So that</strong> I can keep records for tax purposes and personal finance management</p>
+    
+    <p><span class="label label-medium">Medium Priority</span> <span class="label">statements</span></p>
+    
+    <div class="acceptance-criteria">
+        <strong>Acceptance Criteria:</strong>
+        
+        <p><strong>Prerequisites:</strong></p>
+        <ul>
+            <li>Customer must have active account with transaction history</li>
+        </ul>
+        
+        <p><strong>Scenario: Customer downloads monthly statement</strong></p>
+        <ol>
+            <li>Customer is viewing account details page</li>
+            <li>Customer clicks on "Statements" or "Download Statement" button</li>
+            <li>Customer selects statement period using month and year dropdowns</li>
+            <li>Customer chooses format (PDF is default, CSV optional)</li>
+            <li>Customer clicks "Download" button</li>
+            <li>System generates PDF statement with account details, all transactions, opening and closing balances</li>
+            <li>PDF includes bank logo, customer name, account number, statement period</li>
+            <li>PDF is password protected with last 4 digits of account + birth year</li>
+            <li>Password hint is displayed before download</li>
+            <li>Download completes within 10 seconds</li>
+            <li>Customer receives confirmation message with password reminder</li>
+            <li>Statement is also saved in "Documents" section of account</li>
+        </ol>
+    </div>
+</div>
+
+<div class="epic-card">
+    <h3>EPIC-3: Fund Transfers & Payments (120 SP)</h3>
+    <p><strong>Description:</strong> Enable secure and efficient money movement, including internal transfers, external payments, bill payments, and scheduled transactions.</p>
+    <p><strong>Business Value:</strong> Core banking functionality for moving money. Critical for user engagement and transaction volume.</p>
+    <p>
+        <span class="label label-critical">Critical</span>
+        <span class="label">payments</span>
+        <span class="label">transfers</span>
+        <span class="label">phase-2</span>
+    </p>
+</div>
+
+<div class="story-card">
+    <h4>📘 User Story: Transfer Between Own Accounts (13 SP)</h4>
+    <p><strong>As a</strong> banking customer<br>
+    <strong>I want</strong> to transfer money between my own accounts<br>
+    <strong>So that</strong> I can manage my finances efficiently</p>
+    
+    <p><span class="label label-critical">Critical Priority</span> <span class="label">transfers</span> <span class="label">core-banking</span></p>
+    
+    <div class="acceptance-criteria">
+        <strong>Acceptance Criteria:</strong>
+        
+        <p><strong>Prerequisites:</strong></p>
+        <ul>
+            <li>Customer must have at least two active accounts</li>
+            <li>Source account must have sufficient balance</li>
+            <li>Customer must be logged in with MFA</li>
+        </ul>
+        
+        <p><strong>Scenario: Successful transfer between own accounts</strong></p>
+        <ol>
+            <li>Customer has checking account with balance $5000 and savings with $1000</li>
+            <li>Customer navigates to "Transfer Funds" page</li>
+            <li>Customer selects checking account (ending in "1234") as source</li>
+            <li>Customer selects savings account (ending in "5678") as destination</li>
+            <li>Customer enters transfer amount "$500"</li>
+            <li>Customer optionally adds description "Monthly savings"</li>
+            <li>System validates sufficient balance exists</li>
+            <li>Customer clicks "Continue" button</li>
+            <li>System displays transfer preview with all details</li>
+            <li>Customer reviews and clicks "Confirm Transfer"</li>
+            <li>If amount exceeds $500, MFA verification prompt appears</li>
+            <li>Customer completes MFA verification</li>
+            <li>System processes transfer immediately in a database transaction</li>
+            <li>Checking account balance updates to $4500</li>
+            <li>Savings account balance updates to $1500</li>
+            <li>Confirmation message displays "Transfer successful"</li>
+            <li>Transaction appears in history of both accounts immediately</li>
+            <li>Confirmation email is sent within 30 seconds</li>
+            <li>Confirmation SMS is sent within 30 seconds</li>
+        </ol>
+        
+        <p><strong>Scenario: Transfer with insufficient funds</strong></p>
+        <ol>
+            <li>Customer has checking account with balance $100</li>
+            <li>Customer attempts to transfer $500 from checking</li>
+            <li>System validates available balance</li>
+            <li>System displays error message "Insufficient funds"</li>
+            <li>Transfer is not processed</li>
+            <li>Account balances remain unchanged</li>
+            <li>No notifications are sent</li>
+        </ol>
+    </div>
+    
+    <p><strong>Technical Requirements:</strong></p>
+    <ul>
+        <li>API Endpoint: POST /api/v1/transfers/internal</li>
+        <li>Response Time: < 500ms for 95th percentile</li>
+        <li>Database: ACID transaction to ensure atomicity</li>
+        <li>Concurrency: Row-level locking for simultaneous transfers</li>
+        <li>Idempotency: Support idempotent requests to prevent duplicates</li>
+    </ul>
+</div>
+
+<div class="story-card">
+    <h4>📘 User Story: External Fund Transfer (21 SP)</h4>
+    <p><strong>As a</strong> banking customer<br>
+    <strong>I want</strong> to transfer money to external bank accounts<br>
+    <strong>So that</strong> I can send money to others or my accounts at other banks</p>
+    
+    <p><span class="label label-critical">Critical Priority</span> <span class="label label-compliance">AML</span></p>
+    
+    <div class="acceptance-criteria">
+        <strong>Acceptance Criteria:</strong>
+        
+        <p><strong>Prerequisites:</strong></p>
+        <ul>
+            <li>Customer must have verified beneficiary added</li>
+            <li>Customer must have sufficient balance</li>
+        </ul>
+        
+        <p><strong>Scenario: Successful external transfer</strong></p>
+        <ol>
+            <li>Customer has added and verified external beneficiary</li>
+            <li>Customer navigates to "Transfer Funds" and selects external transfer</li>
+            <li>Customer selects beneficiary from saved list</li>
+            <li>Customer enters transfer amount</li>
+            <li>Customer enters transfer reference/purpose</li>
+            <li>Customer selects transfer speed (standard 2-3 days, express 1 day with fee)</li>
+            <li>System validates amount against daily limit ($10,000)</li>
+            <li>Customer clicks "Continue" to preview</li>
+            <li>Customer reviews all details including fees</li>
+            <li>Customer confirms transfer with MFA</li>
+            <li>System performs AML check on transaction</li>
+            <li>If amount exceeds $10,000, transaction is flagged for compliance review</li>
+            <li>Transfer is queued for processing</li>
+            <li>Customer sees estimated completion time</li>
+            <li>System generates tracking number</li>
+            <li>Customer receives confirmation with tracking number</li>
+            <li>Customer can track transfer status in "Pending Transfers" section</li>
+            <li>Notifications sent at each status change (processing, sent, completed)</li>
+        </ol>
+    </div>
+</div>
+
+<div class="story-card">
+    <h4>📘 User Story: Add Beneficiary (8 SP)</h4>
+    <p><strong>As a</strong> banking customer<br>
+    <strong>I want</strong> to add and save beneficiary details<br>
+    <strong>So that</strong> I can easily send money to them in the future</p>
+    
+    <div class="acceptance-criteria">
+        <strong>Acceptance Criteria:</strong>
+        
+        <p><strong>Scenario: Customer adds new beneficiary</strong></p>
+        <ol>
+            <li>Customer navigates to "Beneficiaries" page</li>
+            <li>Customer clicks "Add New Beneficiary"</li>
+            <li>Customer enters beneficiary full name (as per bank account)</li>
+            <li>Customer enters beneficiary bank name or selects from list</li>
+            <li>Customer enters beneficiary account number</li>
+            <li>System prompts to re-enter account number for verification</li>
+            <li>Customer confirms account number matches</li>
+            <li>Customer provides nickname for easy identification (optional)</li>
+            <li>System validates all required fields</li>
+            <li>Customer clicks "Save Beneficiary"</li>
+            <li>System may initiate small verification transfer ($0.01)</li>
+            <li>Beneficiary is saved to customer's list</li>
+            <li>Confirmation message is displayed</li>
+            <li>Beneficiary appears in list immediately</li>
+        </ol>
+    </div>
+</div>
+
+<div class="story-card">
+    <h4>📘 User Story: Bill Payment (13 SP)</h4>
+    <p><strong>As a</strong> banking customer<br>
+    <strong>I want</strong> to pay my utility bills directly from the app<br>
+    <strong>So that</strong> I can manage all payments in one place</p>
+    
+    <div class="acceptance-criteria">
+        <strong>Acceptance Criteria:</strong>
+        
+        <p><strong>Scenario: Customer pays utility bill</strong></p>
+        <ol>
+            <li>Customer navigates to "Pay Bills" section</li>
+            <li>Customer clicks "Pay New Bill"</li>
+            <li>System displays biller directory by category (utilities, telecom, insurance)</li>
+            <li>Customer searches for biller by name or browses category</li>
+            <li>Customer selects biller (e.g., "Electric Company")</li>
+            <li>Customer enters their account number with the biller</li>
+            <li>System validates account number format</li>
+            <li>Customer enters payment amount</li>
+            <li>Customer selects source account</li>
+            <li>Customer selects payment date (today or future date within 90 days)</li>
+            <li>System calculates if payment will arrive by due date</li>
+            <li>Customer reviews payment summary</li>
+            <li>Customer clicks "Confirm Payment"</li>
+            <li>Payment is scheduled for selected date</li>
+            <li>System generates confirmation number</li>
+            <li>Customer receives confirmation with details</li>
+            <li>Biller is saved to "My Billers" for future quick payments</li>
+            <li>Reminder notification sent on payment date</li>
+        </ol>
+    </div>
+</div>
+
+<div class="epic-card">
+    <h3>EPIC-5: Security & Fraud Prevention (110 SP)</h3>
+    <p><strong>Description:</strong> Protect customer accounts through real-time fraud detection, suspicious activity monitoring, and automated security controls.</p>
+    <p><strong>Business Value:</strong> Critical for maintaining customer trust and regulatory compliance. Reduces fraud losses and protects reputation.</p>
+    <p>
+        <span class="label label-critical">Critical</span>
+        <span class="label">security</span>
+        <span class="label">fraud-detection</span>
+        <span class="label">phase-1</span>
+    </p>
+</div>
+
+<div class="story-card">
+    <h4>📘 User Story: Real-time Fraud Detection (21 SP)</h4>
+    <p><strong>As the</strong> banking system<br>
+    <strong>I need</strong> to detect suspicious transactions in real-time<br>
+    <strong>So that</strong> I can prevent fraudulent activities and protect customers</p>
+    
+    <p><span class="label label-critical">Critical Priority</span> <span class="label">fraud-detection</span> <span class="label">ml</span></p>
+    
+    <div class="acceptance-criteria">
+        <strong>Acceptance Criteria:</strong>
+        
+        <p><strong>Prerequisites:</strong></p>
+        <ul>
+            <li>Fraud detection engine must be active and monitoring</li>
+            <li>ML models must be trained on fraud patterns</li>
+        </ul>
+        
+        <p><strong>Scenario: Detect suspicious transaction</strong></p>
+        <ol>
+            <li>Fraud detection system monitors all transactions in real-time</li>
+            <li>Customer attempts transaction (e.g., $2000 purchase from new location)</li>
+            <li>System analyzes transaction against customer's historical patterns</li>
+            <li>System detects unusual characteristics:
+                <ul>
+                    <li>Transaction from location 500 miles from usual</li>
+                    <li>Amount 10x higher than average</li>
+                    <li>New merchant/category</li>
+                </ul>
+            </li>
+            <li>Risk score is calculated (e.g., 85/100 - high risk)</li>
+            <li>Transaction is automatically held/blocked before processing</li>
+            <li>Customer immediately receives SMS alert: "Unusual transaction detected. Was this you?"</li>
+            <li>Customer receives push notification with transaction details</li>
+            <li>Notification includes "Verify" or "Report Fraud" buttons</li>
+            <li>If customer verifies within 10 minutes, transaction proceeds</li>
+            <li>If customer reports fraud, transaction is permanently blocked</li>
+            <li>If no response within 10 minutes, transaction is blocked</li>
+            <li>Security team is notified for manual review</li>
+            <li>All fraud events are logged with timestamp, risk score, outcome</li>
+        </ol>
+    </div>
+</div>
+
+<div class="epic-card">
+    <h3>EPIC-9: Notifications & Alerts (60 SP)</h3>
+    <p><strong>Description:</strong> Real-time communication system for transaction alerts, security notifications, and account updates via SMS, email, and push notifications.</p>
+    <p><strong>Business Value:</strong> Keeps customers informed and engaged. Critical for security monitoring and fraud prevention.</p>
+</div>
+
+<div class="story-card">
+    <h4>📘 User Story: Transaction Alerts (8 SP)</h4>
+    <p><strong>As a</strong> banking customer<br>
+    <strong>I want</strong> to receive instant alerts for all transactions<br>
+    <strong>So that</strong> I can detect unauthorized activity immediately</p>
+    
+    <div class="acceptance-criteria">
+        <strong>Acceptance Criteria:</strong>
+        
+        <p><strong>Scenario: Receive transaction alert</strong></p>
+        <ol>
+            <li>Customer has enabled transaction alerts in notification preferences</li>
+            <li>A debit transaction occurs on customer's account ($45.00 at grocery store)</li>
+            <li>Transaction is processed successfully</li>
+            <li>Within 30 seconds, alert system is triggered</li>
+            <li>Customer receives SMS: "Account X1234: $45.00 debited at Grocery Store on Dec 16, 2025 2:30 PM. Not you? Call us."</li>
+            <li>Simultaneously, customer receives push notification on mobile app</li>
+            <li>Push notification displays: amount, merchant name, time, account affected</li>
+            <li>Notification includes "Report as Fraud" quick action button</li>
+            <li>If customer clicks "Report as Fraud", transaction is flagged and card is frozen</li>
+            <li>Alert includes link to view full transaction details</li>
+        </ol>
+    </div>
+</div>
+
+<div class="epic-card">
+    <h3>EPIC-10: Regulatory Compliance & Reporting (100 SP)</h3>
+    <p><strong>Description:</strong> Ensure full compliance with banking regulations including KYC/AML, audit logging, regulatory reporting, and data governance.</p>
+    <p><strong>Business Value:</strong> Mandatory for banking license. Avoids penalties and maintains regulatory standing.</p>
+    <p>
+        <span class="label label-critical">Critical</span>
+        <span class="label label-compliance">KYC</span>
+        <span class="label label-compliance">AML</span>
+        <span class="label label-compliance">SOX</span>
+    </p>
+</div>
+
+<h2 id="compliance">5. 🔒 Compliance & Security Framework</h2>
+
+<div class="warning-panel">
+    <strong>⚠ All user stories MUST include:</strong><br>
+    • Security requirements (authentication, encryption, audit logging)<br>
+    • Compliance tags (KYC, AML, PCI-DSS, GDPR, SOX)<br>
+    • Clear acceptance criteria with prerequisites and numbered steps<br>
+    • Performance criteria (response times, SLAs)
+</div>
+
+<h3>5.1 Security Requirements Checklist</h3>
+
+<table>
+    <tr>
+        <th>Category</th>
+        <th>Requirements</th>
+        <th>Implementation</th>
+    </tr>
+    <tr>
+        <td><strong>Authentication</strong></td>
+        <td>All API endpoints protected</td>
+        <td>OAuth 2.0 with JWT tokens, 15-min expiry</td>
+    </tr>
+    <tr>
+        <td><strong>Authorization</strong></td>
+        <td>User can only access own data</td>
+        <td>Resource-level authorization checks</td>
+    </tr>
+    <tr>
+        <td><strong>Encryption</strong></td>
+        <td>All data encrypted</td>
+        <td>TLS 1.3 in transit, AES-256 at rest</td>
+    </tr>
+    <tr>
+        <td><strong>Audit Logging</strong></td>
+        <td>All actions logged</td>
+        <td>User ID, action, timestamp, IP address, result</td>
+    </tr>
+    <tr>
+        <td><strong>Rate Limiting</strong></td>
+        <td>Prevent abuse</td>
+        <td>API: 100 req/min, Login: 5 attempts/hour</td>
+    </tr>
+    <tr>
+        <td><strong>Input Validation</strong></td>
+        <td>Prevent injection attacks</td>
+        <td>Whitelist validation, parameterized queries</td>
+    </tr>
+</table>
+
+<h3>5.2 Compliance Matrix</h3>
+
+<table>
+    <tr>
+        <th>Feature</th>
+        <th>KYC/AML</th>
+        <th>PCI-DSS</th>
+        <th>GDPR</th>
+        <th>SOX</th>
+    </tr>
+    <tr>
+        <td>User Registration</td>
+        <td>✓ Required</td>
+        <td>—</td>
+        <td>✓ Consent</td>
+        <td>✓ Audit</td>
+    </tr>
+    <tr>
+        <td>Document Upload</td>
+        <td>✓ Required</td>
+        <td>—</td>
+        <td>✓ Storage</td>
+        <td>✓ Audit</td>
+    </tr>
+    <tr>
+        <td>Fund Transfers</td>
+        <td>✓ >$10K flagged</td>
+        <td>—</td>
+        <td>✓ Data Min.</td>
+        <td>✓ Complete Trail</td>
+    </tr>
+    <tr>
+        <td>Card Transactions</td>
+        <td>—</td>
+        <td>✓ Tokenization</td>
+        <td>✓ Data Min.</td>
+        <td>✓ Complete Trail</td>
+    </tr>
+    <tr>
+        <td>Account Access</td>
+        <td>—</td>
+        <td>—</td>
+        <td>✓ Access Rights</td>
+        <td>✓ Audit</td>
+    </tr>
+</table>
+
+<h2 id="import">6. 📥 JIRA Import Instructions</h2>
+
+<div class="success-panel">
+    <strong>✓ Ready to Import</strong><br>
+    This project includes CSV files ready for direct import into JIRA.
+</div>
+
+<h3>6.1 Import Process (5 minutes)</h3>
+
+<p><strong>Step 1: Access JIRA Import</strong></p>
+<ol>
+    <li>Log into JIRA as Administrator</li>
+    <li>Navigate to: <strong>Settings ⚙️ > System > External System Import</strong></li>
+    <li>Click <strong>"CSV"</strong></li>
+</ol>
+
+<p><strong>Step 2: Import Epics</strong></p>
+<ol>
+    <li>Select file: <code>epics.csv</code></li>
+    <li>Map fields:
+        <ul>
+            <li>Summary → Summary</li>
+            <li>Issue Type → Issue Type</li>
+            <li>Description → Description</li>
+            <li>Epic Name → Epic Name</li>
+            <li>Priority → Priority</li>
+            <li>Labels → Labels</li>
+            <li>Story Points → Story Points</li>
+        </ul>
+    </li>
+    <li>Click <strong>"Begin Import"</strong></li>
+    <li>✓ Result: 10 epics imported</li>
+</ol>
+
+<p><strong>Step 3: Import Stories</strong></p>
+<ol>
+    <li>Select file: <code>stories.csv</code></li>
+    <li>Map fields (same as epics, plus):
+        <ul>
+            <li>Epic Link → Epic Link</li>
+            <li>Acceptance Criteria → Description (or custom field)</li>
+        </ul>
+    </li>
+    <li>Click <strong>"Begin Import"</strong></li>
+    <li>✓ Result: User stories imported and linked to epics</li>
+</ol>
+
+<p><strong>Step 4: Verify</strong></p>
+<ol>
+    <li>Navigate to your project board</li>
+    <li>Verify all epics appear with story counts</li>
+    <li>Open a story and check acceptance criteria</li>
+    <li>View epic roadmap</li>
+</ol>
+
+<h3>6.2 Post-Import Configuration</h3>
+
+<p><strong>Create Dashboards:</strong></p>
+<ul>
+    <li><strong>Epic Progress</strong> - Story points by epic</li>
+    <li><strong>Sprint Burndown</strong> - Daily progress tracking</li>
+    <li><strong>Velocity Chart</strong> - Team velocity trends</li>
+    <li><strong>Compliance Dashboard</strong> - Stories by compliance category</li>
+</ul>
+
+<p><strong>Set Up Workflows:</strong></p>
+<ul>
+    <li>To Do → In Progress → Code Review → Testing → Done</li>
+    <li>Add approval gates for compliance-critical stories</li>
+</ul>
+
+<p><strong>Configure Labels:</strong></p>
+<ul>
+    <li><strong>Feature Areas:</strong> authentication, payments, transfers, cards, etc.</li>
+    <li><strong>Compliance:</strong> kyc, aml, pci-dss, gdpr, sox</li>
+    <li><strong>Phases:</strong> phase-1, phase-2, phase-3, phase-4, mvp</li>
+</ul>
+
+<h2>7. 📊 Success Metrics</h2>
+
+<h3>After 1 Month:</h3>
+<ul>
+    <li>✓ 10 epics in JIRA</li>
+    <li>✓ 50+ stories defined</li>
+    <li>✓ 2-3 sprints completed</li>
+    <li>✓ Velocity baseline established</li>
+    <li>✓ Team trained on acceptance criteria format</li>
+</ul>
+
+<h3>After 3 Months (Phase 1 Complete):</h3>
+<ul>
+    <li>✓ User registration and authentication live</li>
+    <li>✓ Account viewing functional</li>
+    <li>✓ Security controls in place</li>
+    <li>✓ Basic compliance met</li>
+    <li>✓ 200+ stories defined</li>
+    <li>✓ Predictable velocity</li>
+</ul>
+
+<h2>8. 📚 Additional Resources</h2>
+
+<p><strong>Documentation Files:</strong></p>
+<ul>
+    <li><code>README.md</code> - Project documentation</li>
+    <li><code>QUICK_START.md</code> - 5-minute setup guide</li>
+    <li><code>RESEARCH_SUMMARY.md</code> - Comprehensive research (16 sections)</li>
+    <li><code>templates/</code> - Reusable templates for epics, stories, and tests</li>
+</ul>
+
+<p><strong>CSV Files:</strong></p>
+<ul>
+    <li><code>csv/epics.csv</code> - 10 banking epics ready to import</li>
+    <li><code>csv/stories.csv</code> - Sample user stories with plain English acceptance criteria</li>
+</ul>
+
+<hr>
+
+<div class="info-panel">
+    <strong>💡 Pro Tips:</strong><br>
+    • Start with Phase 1 epics for MVP delivery<br>
+    • Never skip security/compliance requirements<br>
+    • Review acceptance criteria in grooming sessions<br>
+    • Update story points based on team velocity<br>
+    • Conduct weekly epic reviews
+</div>
+
+<p style="text-align: center; margin-top: 50px; color: #6B778C;">
+    <strong>🎉 You're ready to build your banking application!</strong><br>
+    Import the CSV files and start your development journey.
+</p>
+
+<p style="text-align: center; color: #6B778C; font-size: 12px;">
+    Generated: December 16, 2025 | Total Story Points: 1000 SP | Estimated Duration: 10-12 months
+</p>
+
+</body>
+</html>
