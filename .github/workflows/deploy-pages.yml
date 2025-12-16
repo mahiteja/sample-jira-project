@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - test
+      - main
     paths:
       - 'index.html'
       - 'CONFLUENCE_BANKING_PROJECT.html'
@@ -29,7 +29,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: test
+          ref: main
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
