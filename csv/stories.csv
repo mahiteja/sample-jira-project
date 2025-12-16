@@ -1,0 +1,141 @@
+Summary,Issue Type,Description,Epic Link,Priority,Labels,Story Points,Reporter,Acceptance Criteria
+"User Registration",Story,"As a new customer, I want to register for online banking so that I can access my accounts digitally and manage my finances online.",EPIC-1,High,"registration,onboarding,kyc,phase-1",8,product-owner@bank.com,"Feature: User Registration
+Scenario: New customer registers successfully
+  Given a new user visits the registration page
+  When they provide valid personal information
+  And they create a strong password
+  And they verify their email address
+  Then their account should be created with pending status
+  And they should receive welcome email
+  And KYC verification should be initiated"
+"KYC Document Upload",Story,"As a new customer, I want to upload my identity documents so that I can complete the KYC verification process and activate my account.",EPIC-1,Critical,"kyc,compliance,document-upload,phase-1",13,product-owner@bank.com,"Feature: KYC Document Upload
+Scenario: Customer uploads identity documents
+  Given customer has registered account
+  When they upload valid government ID
+  And they upload proof of address
+  Then documents should be encrypted and stored securely
+  And OCR should extract information automatically
+  And compliance team should be notified for review
+  And customer should see upload confirmation"
+"Multi-Factor Authentication Setup",Story,"As a banking customer, I want to set up multi-factor authentication so that my account is protected with an additional security layer.",EPIC-1,Critical,"security,mfa,authentication,phase-1",8,product-owner@bank.com,"Feature: MFA Setup
+Scenario: Customer enables MFA
+  Given customer is logged in
+  When they navigate to security settings
+  And they choose authenticator app method
+  Then QR code should be displayed
+  And customer scans code with authenticator app
+  And customer enters verification code
+  Then MFA should be enabled
+  And backup codes should be generated"
+"Biometric Authentication",Story,"As a mobile banking user, I want to use fingerprint or face recognition to log in so that I can access my account quickly and securely.",EPIC-1,High,"biometric,authentication,mobile,security,phase-1",13,product-owner@bank.com,"Feature: Biometric Login
+Scenario: Customer logs in with fingerprint
+  Given customer has enrolled biometric authentication
+  When they open mobile app
+  And they place finger on sensor
+  Then fingerprint should be verified locally
+  And customer should be logged in
+  And session should be created with 15-minute timeout"
+"View Account Balance",Story,"As a banking customer, I want to view my account balance so that I can monitor my finances and available funds.",EPIC-2,High,"account-management,balance,core-banking,phase-1",5,product-owner@bank.com,"Feature: View Account Balance
+Scenario: Customer views current balance
+  Given customer is logged into their account
+  When they navigate to accounts page
+  Then they should see all linked accounts
+  And each account should display current balance
+  And each account should show available vs pending balance
+  And last transaction date should be visible"
+"View Transaction History",Story,"As a banking customer, I want to view my transaction history so that I can track my spending and verify transactions.",EPIC-2,High,"transactions,history,account-management,phase-1",8,product-owner@bank.com,"Feature: Transaction History
+Scenario: Customer views recent transactions
+  Given customer is viewing account details
+  When they click on transaction history
+  Then last 30 days of transactions should be displayed
+  And transactions should show date, description, amount
+  And transactions should be sorted by date (newest first)
+  And customer can filter by date range, amount, type"
+"Download Account Statement",Story,"As a banking customer, I want to download my account statements so that I can keep records for tax purposes and personal finance management.",EPIC-2,Medium,"statements,documents,reporting,phase-2",5,product-owner@bank.com,"Feature: Statement Download
+Scenario: Customer downloads monthly statement
+  Given customer is viewing account details
+  When they select statement period (month/year)
+  And they click download as PDF
+  Then PDF statement should be generated
+  And statement should include all transactions
+  And statement should be password protected
+  And download should complete within 10 seconds"
+"Transfer Between Own Accounts",Story,"As a banking customer, I want to transfer money between my own accounts so that I can manage my finances efficiently.",EPIC-3,Critical,"transfers,payments,core-banking,security,phase-2",13,product-owner@bank.com,"Feature: Internal Fund Transfer
+Scenario: Transfer between own accounts
+  Given customer has multiple accounts with sufficient balance
+  When they select source and destination accounts
+  And enter transfer amount
+  And provide transfer description
+  And confirm with MFA
+  Then funds should be debited from source
+  And funds should be credited to destination
+  And confirmation should be sent via email/SMS
+  And transaction should appear in history immediately"
+"External Fund Transfer",Story,"As a banking customer, I want to transfer money to external bank accounts so that I can send money to others or my accounts at other banks.",EPIC-3,Critical,"transfers,external-payment,security,compliance,phase-2",21,product-owner@bank.com,"Feature: External Fund Transfer
+Scenario: Transfer to external beneficiary
+  Given customer has added verified beneficiary
+  When they initiate external transfer
+  And enter amount and reference
+  And confirm with MFA
+  Then AML check should be performed
+  And transfer should be queued for processing
+  And customer should receive estimated completion time
+  And tracking number should be provided"
+"Add Beneficiary",Story,"As a banking customer, I want to add and save beneficiary details so that I can easily send money to them in the future.",EPIC-3,High,"beneficiary,transfers,payments,phase-2",8,product-owner@bank.com,"Feature: Add Beneficiary
+Scenario: Customer adds new beneficiary
+  Given customer is on beneficiaries page
+  When they enter beneficiary name
+  And enter bank account details
+  And verify account number by re-entering
+  And provide nickname (optional)
+  Then beneficiary should be saved
+  And verification transfer may be initiated
+  And beneficiary should appear in list"
+"Schedule Recurring Transfer",Story,"As a banking customer, I want to schedule automatic recurring transfers so that I can automate regular payments like savings or loan repayments.",EPIC-3,Medium,"scheduled-payments,automation,transfers,phase-3",13,product-owner@bank.com,"Feature: Recurring Transfers
+Scenario: Set up monthly recurring transfer
+  Given customer is on transfer page
+  When they enable recurring transfer option
+  And select frequency (daily/weekly/monthly)
+  And set start date and end date (optional)
+  And specify amount and accounts
+  Then recurring schedule should be created
+  And customer should receive confirmation
+  And first transfer should execute on start date"
+"Bill Payment",Story,"As a banking customer, I want to pay my utility bills directly from the app so that I can manage all payments in one place.",EPIC-3,High,"bill-payment,payments,phase-3",13,product-owner@bank.com,"Feature: Bill Payment
+Scenario: Pay utility bill
+  Given customer is on bill payment page
+  When they select biller from directory
+  And enter account number with biller
+  And enter payment amount
+  And select payment date
+  And confirm transaction
+  Then payment should be scheduled
+  And confirmation number should be provided
+  And reminder should be set for payment date"
+"Real-time Fraud Detection",Story,"As the banking system, I need to detect suspicious transactions in real-time so that I can prevent fraudulent activities and protect customers.",EPIC-5,Critical,"fraud-detection,security,ml,phase-2",21,product-owner@bank.com,"Feature: Fraud Detection
+Scenario: Detect suspicious transaction
+  Given fraud detection engine is monitoring transactions
+  When transaction is attempted from unusual location
+  And amount is higher than customer's pattern
+  Then transaction should be temporarily held
+  And customer should receive immediate SMS alert
+  And customer must verify transaction to proceed
+  And security team should be notified if not verified"
+"Transaction Alerts",Story,"As a banking customer, I want to receive instant alerts for all transactions so that I can detect unauthorized activity immediately.",EPIC-9,High,"notifications,alerts,security,phase-2",8,product-owner@bank.com,"Feature: Transaction Alerts
+Scenario: Receive transaction alert
+  Given customer has enabled transaction alerts
+  When a debit transaction occurs on their account
+  Then customer should receive SMS within 30 seconds
+  And customer should receive push notification
+  And alert should include amount, merchant, time
+  And option to report as fraud should be available"
+"In-App Chat Support",Story,"As a banking customer, I want to chat with support agent in the app so that I can get help without making a phone call.",EPIC-8,Medium,"support,chat,customer-service,phase-3",13,product-owner@bank.com,"Feature: In-App Chat
+Scenario: Customer initiates chat with support
+  Given customer is logged into app
+  When they click on help icon
+  And select 'Chat with Agent'
+  Then chat window should open
+  And customer should be connected to available agent
+  And chat history should be saved
+  And customer can attach screenshots
+  And satisfaction survey shown after chat ends"
