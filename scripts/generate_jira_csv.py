@@ -126,17 +126,17 @@ class JIRAIssueGenerator:
                 "Priority": "High",
                 "Labels": "registration,onboarding,kyc,phase-1",
                 "Story Points": 8,
-                "Acceptance Criteria": self._get_gherkin_registration()
+                "Acceptance Criteria": self._get_plain_registration()
             },
             {
                 "Summary": "KYC Document Upload",
                 "Issue Type": "Story",
-                "Description": "As a new customer, I want to upload identity documents for KYC.",
+                "Description": "As a new customer, I want to upload identity documents for KYC verification.",
                 "Epic Link": "EPIC-1",
                 "Priority": "Critical",
                 "Labels": "kyc,compliance,document-upload,phase-1",
                 "Story Points": 13,
-                "Acceptance Criteria": self._get_gherkin_kyc()
+                "Acceptance Criteria": self._get_plain_kyc()
             },
             # Epic 2: Account Management
             {
@@ -147,7 +147,7 @@ class JIRAIssueGenerator:
                 "Priority": "High",
                 "Labels": "account-management,balance,core-banking,phase-1",
                 "Story Points": 5,
-                "Acceptance Criteria": self._get_gherkin_balance()
+                "Acceptance Criteria": self._get_plain_balance()
             },
             # Epic 3: Transfers
             {
@@ -158,7 +158,7 @@ class JIRAIssueGenerator:
                 "Priority": "Critical",
                 "Labels": "transfers,payments,core-banking,security,phase-2",
                 "Story Points": 13,
-                "Acceptance Criteria": self._get_gherkin_transfer()
+                "Acceptance Criteria": self._get_plain_transfer()
             }
         ]
         return stories
@@ -202,72 +202,129 @@ class JIRAIssueGenerator:
             {
                 "Summary": f"Test: {story_key} - Happy Path",
                 "Issue Type": "Test",
-                "Test Type": "Cucumber",
+                "Test Type": "Manual",
                 "Description": f"Verify successful completion of {story_key}",
                 "Requirement": story_key,
                 "Priority": "High",
-                "Labels": "automated,bdd,positive",
-                "Gherkin Definition": self._get_test_gherkin(story_key)
+                "Labels": "automated,positive",
+                "Test Steps": self._get_test_steps(story_key)
             },
             {
                 "Summary": f"Test: {story_key} - Error Cases",
                 "Issue Type": "Test",
-                "Test Type": "Cucumber",
+                "Test Type": "Manual",
                 "Description": f"Verify error handling for {story_key}",
                 "Requirement": story_key,
                 "Priority": "High",
-                "Labels": "automated,bdd,negative",
-                "Gherkin Definition": self._get_test_error_gherkin(story_key)
+                "Labels": "automated,negative",
+                "Test Steps": self._get_test_error_steps(story_key)
             }
         ]
         return tests
     
-    def _get_gherkin_registration(self) -> str:
-        return """Feature: User Registration
+    def _get_plain_registration(self) -> str:
+        return """Prerequisites:
+- User has valid email address and personal information
+- Registration page is accessible
+
 Scenario: New customer registers successfully
-  Given a new user visits registration page
-  When they provide valid information
-  Then account should be created
-  And verification email sent"""
+1. New user visits registration page
+2. User provides valid personal information (name, email, phone, DOB)
+3. User creates strong password meeting security requirements
+4. User submits registration form
+5. System validates all information
+6. Account is created with pending status
+7. Verification email is sent to user's email address
+8. User receives confirmation message"""
     
-    def _get_gherkin_kyc(self) -> str:
-        return """Feature: KYC Document Upload
+    def _get_plain_kyc(self) -> str:
+        return """Prerequisites:
+- Customer has registered account
+- Customer has valid government-issued ID
+- Customer has proof of address document
+
 Scenario: Upload identity documents
-  Given customer has registered
-  When they upload valid government ID
-  Then documents encrypted and stored
-  And compliance team notified"""
+1. Customer logs into account with pending status
+2. Customer navigates to KYC document upload section
+3. Customer selects and uploads government ID (PDF/JPG/PNG, max 5MB)
+4. Customer selects and uploads proof of address
+5. Documents are encrypted with AES-256 during upload
+6. System stores documents securely
+7. Compliance team is notified for review
+8. Customer receives upload confirmation with reference number"""
     
-    def _get_gherkin_balance(self) -> str:
-        return """Feature: View Account Balance
+    def _get_plain_balance(self) -> str:
+        return """Prerequisites:
+- Customer is logged into their account
+- Customer has at least one active bank account
+
 Scenario: Customer views balance
-  Given customer logged in
-  When they navigate to accounts
-  Then all accounts displayed with balances"""
+1. Customer is on the dashboard or navigates to accounts page
+2. System displays all linked accounts (checking, savings, credit cards)
+3. Each account shows account type and last 4 digits
+4. Each account displays current balance prominently
+5. Each account shows available balance vs pending balance
+6. Last transaction date is visible for each account
+7. Customer can click on account to view more details"""
     
-    def _get_gherkin_transfer(self) -> str:
-        return """Feature: Internal Fund Transfer
+    def _get_plain_transfer(self) -> str:
+        return """Prerequisites:
+- Customer has at least two active accounts
+- Source account has sufficient balance
+- Customer is logged in with MFA
+
 Scenario: Transfer between own accounts
-  Given customer has multiple accounts
-  When they transfer funds with MFA
-  Then transfer completes successfully
-  And balances updated immediately"""
+1. Customer navigates to Transfer Funds page
+2. Customer selects source account from dropdown
+3. Customer selects destination account (only own accounts shown)
+4. Customer enters transfer amount
+5. Customer optionally adds description/memo
+6. System validates sufficient balance exists
+7. Customer reviews transfer preview
+8. Customer confirms transfer with MFA verification
+9. Transfer processes immediately
+10. Balances update in real-time
+11. Confirmation message is displayed
+12. Confirmation email and SMS are sent"""
     
-    def _get_test_gherkin(self, story_key: str) -> str:
-        return f"""@{story_key} @smoke @positive
-Feature: Test {story_key}
-Scenario: Successful execution
-  Given system is operational
-  When user performs valid action
-  Then expected result achieved"""
+    def _get_test_steps(self, story_key: str) -> str:
+        return f"""Tags: {story_key}, smoke, positive, automated
+
+Test: Verify successful execution of {story_key}
+
+Prerequisites:
+- System is operational and all services are available
+- Test data is prepared
+- User has valid credentials
+
+Test Steps:
+1. Log into the system with test credentials
+2. Navigate to the feature under test
+3. Perform valid user action as per story requirements
+4. Verify expected result is achieved
+5. Verify all success indicators are displayed
+6. Verify data is persisted correctly
+7. Log out successfully"""
     
-    def _get_test_error_gherkin(self, story_key: str) -> str:
-        return f"""@{story_key} @negative
-Feature: Test {story_key} Errors
-Scenario: Error handling
-  Given system is operational
-  When user performs invalid action
-  Then appropriate error displayed"""
+    def _get_test_error_steps(self, story_key: str) -> str:
+        return f"""Tags: {story_key}, negative, error-handling, automated
+
+Test: Verify error handling for {story_key}
+
+Prerequisites:
+- System is operational
+- Test data is prepared
+- User has valid credentials
+
+Test Steps:
+1. Log into the system with test credentials
+2. Navigate to the feature under test
+3. Perform invalid user action (e.g., invalid input, missing required fields)
+4. Verify appropriate error message is displayed
+5. Verify error message is clear and helpful
+6. Verify system handles error gracefully without crash
+7. Verify no data corruption occurs
+8. Verify user can recover from error state"""
     
     def write_csv(self, filename: str, data: List[Dict], fieldnames: List[str]):
         """Write data to CSV file"""
@@ -306,7 +363,7 @@ Scenario: Error handling
         # Generate XRay Tests for first story
         tests = self.generate_xray_tests("STORY-1")
         test_fields = ["Summary", "Issue Type", "Test Type", "Description",
-                      "Requirement", "Priority", "Labels", "Gherkin Definition"]
+                      "Requirement", "Priority", "Labels", "Test Steps"]
         self.write_csv("xray_tests_sample.csv", tests, test_fields)
         
         print("\n" + "="*60)
