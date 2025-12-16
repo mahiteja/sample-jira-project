@@ -39,50 +39,48 @@
 
 ---
 
-## FOR CUCUMBER/BDD TESTS
+## FOR AUTOMATED TESTS
 
-### Gherkin Definition
+### Test Scenarios
 
-```gherkin
-@TEST-[Number] @[Epic-Tag] @[Feature-Tag]
-Feature: [Feature Name]
-  As a [user role]
-  I want to [perform action]
-  So that [achieve goal]
+**Tags:** TEST-[Number], [Epic-Tag], [Feature-Tag]
 
-  Background:
-    Given [common precondition for all scenarios]
-    And [another precondition]
+#### Scenario 1: [Test Scenario Name - Happy Path] (smoke, positive)
+**Setup:**
+- [Common precondition for all scenarios]
+- [Another precondition]
+- [Initial state]
+- [Additional context]
 
-  @smoke @positive
-  Scenario: [Test Scenario Name - Happy Path]
-    Given [initial state]
-    And [additional context]
-    When [action is performed]
-    And [another action]
-    Then [expected result]
-    And [verification]
+**Steps:**
+1. [Action is performed]
+2. [Another action]
+3. [Expected result occurs]
+4. [Verification step]
 
-  @negative
-  Scenario: [Test Scenario Name - Error Case]
-    Given [initial state]
-    When [action that causes error]
-    Then [expected error behavior]
-    And [error message verification]
+#### Scenario 2: [Test Scenario Name - Error Case] (negative)
+**Setup:**
+- [Initial state]
 
-  @edge-case
-  Scenario Outline: [Parameterized Test Scenario]
-    Given user has account with balance <initial_balance>
-    When user attempts to transfer <amount>
-    Then result should be <result>
-    And balance should be <final_balance>
+**Steps:**
+1. [Action that causes error]
+2. [Expected error behavior occurs]
+3. [Error message is verified]
 
-    Examples:
-      | initial_balance | amount | result   | final_balance |
-      | 1000           | 500    | success  | 500          |
-      | 100            | 500    | failed   | 100          |
-      | 0              | 100    | failed   | 0            |
-```
+#### Scenario 3: [Parameterized Test - Multiple Test Data] (edge-case)
+**Test Data Table:**
+
+| Test Case | Initial Balance | Transfer Amount | Expected Result | Final Balance |
+|-----------|----------------|-----------------|-----------------|---------------|
+| Case 1    | 1000           | 500             | success         | 500           |
+| Case 2    | 100            | 500             | failed          | 100           |
+| Case 3    | 0              | 100             | failed          | 0             |
+
+**Steps for each test case:**
+1. User has account with balance specified in "Initial Balance" column
+2. User attempts to transfer amount specified in "Transfer Amount" column
+3. Result matches "Expected Result" column
+4. Balance is verified to match "Final Balance" column
 
 ---
 
@@ -209,7 +207,7 @@ Verify that a customer can successfully transfer funds between their own account
 **Test Repository Folder:** /Banking/Transfers/Internal
 
 ### Test Description
-Automated BDD test to verify fund transfer functionality including happy path, error cases, and edge cases using Gherkin syntax.
+Automated test to verify fund transfer functionality including happy path, error cases, and edge cases.
 
 ### Preconditions
 **Precondition ID:** PRECOND-5
@@ -219,127 +217,123 @@ Automated BDD test to verify fund transfer functionality including happy path, e
 - Fraud detection service is mocked
 - MFA service is configured for test mode
 
-### Gherkin Definition
+### Test Scenarios
 
-```gherkin
-@TEST-102 @transfers @internal-transfer @critical @automated
-Feature: Internal Fund Transfer
-  As a banking customer
-  I want to transfer money between my own accounts
-  So that I can manage my finances efficiently
+**Tags:** TEST-102, transfers, internal-transfer, critical, automated
 
-  Background:
-    Given the banking application is running
-    And the database is in a clean state
-    And the following accounts exist:
-      | Account Type | Account Number | Balance |
-      | Checking     | 1234567890     | 5000.00 |
-      | Savings      | 0987654321     | 1000.00 |
-    And user "john.doe@example.com" owns both accounts
-    And user "john.doe@example.com" is authenticated
-    And MFA is set up for the user
+**Common Setup for All Scenarios:**
+- Banking application is running
+- Database is in a clean state
+- Test accounts exist: Checking (1234567890, balance: $5000.00), Savings (0987654321, balance: $1000.00)
+- User "john.doe@example.com" owns both accounts
+- User "john.doe@example.com" is authenticated
+- MFA is set up for the user
 
-  @smoke @positive
-  Scenario: Successful transfer between own accounts
-    Given user is on the transfer page
-    And user selects checking account "1234567890" as source
-    And user selects savings account "0987654321" as destination
-    When user enters transfer amount "500.00"
-    And user enters description "Monthly savings"
-    And user clicks "Continue" button
-    Then transfer preview should be displayed
-    And preview should show source account ending in "7890"
-    And preview should show destination account ending in "4321"
-    And preview should show amount "$500.00"
-    When user clicks "Confirm Transfer" button
-    And user completes MFA verification
-    Then transfer should be processed successfully
-    And success message "Transfer completed successfully" should be displayed
-    And checking account balance should be "4500.00"
-    And savings account balance should be "1500.00"
-    And transaction should appear in checking account history
-    And transaction should appear in savings account history
-    And confirmation email should be sent to "john.doe@example.com"
-    And confirmation SMS should be sent
+#### Scenario 1: Successful Transfer Between Own Accounts (smoke, positive)
+1. User is on the transfer page
+2. User selects checking account "1234567890" as source
+3. User selects savings account "0987654321" as destination
+4. User enters transfer amount "$500.00"
+5. User enters description "Monthly savings"
+6. User clicks "Continue" button
+7. Transfer preview is displayed
+8. Preview shows source account ending in "7890"
+9. Preview shows destination account ending in "4321"
+10. Preview shows amount "$500.00"
+11. User clicks "Confirm Transfer" button
+12. User completes MFA verification
+13. Transfer is processed successfully
+14. Success message "Transfer completed successfully" is displayed
+15. Checking account balance is updated to "$4500.00"
+16. Savings account balance is updated to "$1500.00"
+17. Transaction appears in checking account history
+18. Transaction appears in savings account history
+19. Confirmation email is sent to "john.doe@example.com"
+20. Confirmation SMS is sent
 
-  @negative @error-handling
-  Scenario: Transfer fails with insufficient funds
-    Given user is on the transfer page
-    And user selects checking account "1234567890" as source
-    And checking account has balance "100.00"
-    When user attempts to transfer "500.00" to savings account
-    And user clicks "Continue" button
-    Then error message "Insufficient funds" should be displayed
-    And transfer should not proceed to confirmation
-    And account balances should remain unchanged
+#### Scenario 2: Transfer Fails with Insufficient Funds (negative, error-handling)
+1. User is on the transfer page
+2. User selects checking account "1234567890" as source
+3. Checking account has balance "$100.00"
+4. User attempts to transfer "$500.00" to savings account
+5. User clicks "Continue" button
+6. Error message "Insufficient funds" is displayed
+7. Transfer does not proceed to confirmation page
+8. Account balances remain unchanged (Checking: $100.00, Savings: $1000.00)
 
-  @negative @validation
-  Scenario: Transfer fails with invalid amount
-    Given user is on the transfer page
-    When user enters invalid amount "0.00"
-    Then error message "Amount must be greater than $0" should be displayed
-    And "Continue" button should be disabled
-    When user enters negative amount "-100.00"
-    Then error message "Invalid amount" should be displayed
-    And "Continue" button should be disabled
+#### Scenario 3: Transfer Fails with Invalid Amount (negative, validation)
+**Test Case 3a: Zero amount**
+1. User is on the transfer page
+2. User enters invalid amount "$0.00"
+3. Error message "Amount must be greater than $0" is displayed
+4. "Continue" button is disabled
 
-  @edge-case @limits
-  Scenario: Transfer fails when exceeding daily limit
-    Given user has daily transfer limit of "10000.00"
-    And user has already transferred "9500.00" today
-    When user attempts to transfer "1000.00"
-    Then warning message should display "This transfer will exceed your daily limit"
-    And transfer should be blocked
-    And user should see option to "Contact Support"
+**Test Case 3b: Negative amount**
+1. User is on the transfer page
+2. User enters negative amount "$-100.00"
+3. Error message "Invalid amount" is displayed
+4. "Continue" button is disabled
 
-  @security @fraud-detection
-  Scenario: Transfer requires additional verification for unusual activity
-    Given user typically transfers small amounts
-    And fraud detection service is active
-    When user attempts to transfer large amount "5000.00"
-    Then fraud detection should flag transaction as unusual
-    And additional verification should be required
-    And user should receive verification code via SMS
-    And transfer should only proceed after code verification
+#### Scenario 4: Transfer Fails When Exceeding Daily Limit (edge-case, limits)
+1. User has daily transfer limit of "$10,000.00"
+2. User has already transferred "$9,500.00" today
+3. User attempts to transfer "$1,000.00" (total would be $10,500)
+4. Warning message displays "This transfer will exceed your daily limit"
+5. Transfer is blocked
+6. User sees option to "Contact Support"
 
-  @edge-case @boundary
-  Scenario Outline: Transfer with various amounts
-    Given user has checking account with balance "<initial_balance>"
-    When user attempts to transfer "<transfer_amount>" to savings
-    Then transfer result should be "<result>"
-    And checking account balance should be "<final_balance>"
+#### Scenario 5: Transfer Requires Additional Verification for Unusual Activity (security, fraud-detection)
+1. User typically transfers small amounts (under $500)
+2. Fraud detection service is active and monitoring
+3. User attempts to transfer large amount "$5,000.00"
+4. Fraud detection flags transaction as unusual
+5. Additional verification is required
+6. User receives verification code via SMS
+7. User must enter verification code
+8. Transfer only proceeds after successful code verification
 
-    Examples:
-      | initial_balance | transfer_amount | result  | final_balance |
-      | 1000.00        | 500.00         | success | 500.00       |
-      | 1000.00        | 1000.00        | success | 0.00         |
-      | 1000.00        | 1001.00        | failure | 1000.00      |
-      | 100.00         | 500.00         | failure | 100.00       |
-      | 0.00           | 100.00         | failure | 0.00         |
-      | 5000.00        | 0.01           | success | 4999.99      |
+#### Scenario 6: Transfer with Various Amounts (edge-case, boundary)
+**Test Data Table:**
 
-  @performance
-  Scenario: Transfer completes within acceptable time
-    Given performance monitoring is enabled
-    When user completes a transfer of "500.00"
-    Then transfer should complete within 2 seconds
-    And API response time should be less than 500 milliseconds
+| Test Case | Initial Balance | Transfer Amount | Expected Result | Final Balance |
+|-----------|----------------|-----------------|-----------------|---------------|
+| Case 1    | $1000.00       | $500.00         | success         | $500.00       |
+| Case 2    | $1000.00       | $1000.00        | success         | $0.00         |
+| Case 3    | $1000.00       | $1001.00        | failure         | $1000.00      |
+| Case 4    | $100.00        | $500.00         | failure         | $100.00       |
+| Case 5    | $0.00          | $100.00         | failure         | $0.00         |
+| Case 6    | $5000.00       | $0.01           | success         | $4999.99      |
 
-  @compliance @audit
-  Scenario: Transfer creates complete audit trail
-    Given audit logging is enabled
-    When user completes a transfer of "500.00"
-    Then audit log should contain entry with:
-      | Field          | Value                     |
-      | User ID        | john.doe@example.com      |
-      | Action         | INTERNAL_TRANSFER         |
-      | Source Account | 1234567890                |
-      | Dest Account   | 0987654321                |
-      | Amount         | 500.00                    |
-      | Timestamp      | [current timestamp]       |
-      | IP Address     | [user's IP]               |
-      | Status         | SUCCESS                   |
-```
+**Steps for each test case:**
+1. User has checking account with balance specified in "Initial Balance" column
+2. User attempts to transfer amount specified in "Transfer Amount" column to savings
+3. Transfer result matches "Expected Result" column
+4. Checking account balance is verified to match "Final Balance" column
+
+#### Scenario 7: Transfer Completes Within Acceptable Time (performance)
+**Setup:**
+- Performance monitoring is enabled
+
+**Steps:**
+1. User completes a transfer of "$500.00"
+2. Transfer completes within 2 seconds
+3. API response time is less than 500 milliseconds
+
+#### Scenario 8: Transfer Creates Complete Audit Trail (compliance, audit)
+**Setup:**
+- Audit logging is enabled
+
+**Steps:**
+1. User completes a transfer of "$500.00"
+2. Audit log contains entry with the following information:
+   - User ID: john.doe@example.com
+   - Action: INTERNAL_TRANSFER
+   - Source Account: 1234567890
+   - Destination Account: 0987654321
+   - Amount: $500.00
+   - Timestamp: [current timestamp]
+   - IP Address: [user's IP address]
+   - Status: SUCCESS
 
 ### Test Execution Details
 

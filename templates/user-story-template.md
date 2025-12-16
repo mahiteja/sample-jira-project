@@ -17,38 +17,29 @@ So that [I can achieve some goal/benefit]
 ## Description
 [Detailed description of the story, providing context and background]
 
-## Acceptance Criteria (Gherkin Format)
+## Acceptance Criteria
 
-```gherkin
-Feature: [Feature Name]
-  As a [user type]
-  I want [capability]
-  So that [benefit]
+### Prerequisites
+- [Precondition that must be met before testing]
+- [Another precondition]
 
-  Background:
-    Given [precondition that applies to all scenarios]
-    And [another precondition]
+### Scenario 1: [Happy Path]
+1. [Initial context and setup]
+2. [User performs action]
+3. [System responds appropriately]
+4. [Expected outcome is verified]
+5. [Additional verification step]
 
-  Scenario: [Scenario 1 - Happy Path]
-    Given [initial context]
-    And [additional context]
-    When [action is performed]
-    And [another action]
-    Then [expected outcome]
-    And [another expected outcome]
-    And [verification step]
+### Scenario 2: [Error Case]
+1. [Initial context and setup]
+2. [User performs action that triggers error]
+3. [System displays appropriate error message]
+4. [System handles error gracefully]
 
-  Scenario: [Scenario 2 - Error Case]
-    Given [initial context]
-    When [action that triggers error]
-    Then [expected error handling]
-    And [user should see appropriate message]
-
-  Scenario: [Scenario 3 - Edge Case]
-    Given [edge case context]
-    When [action]
-    Then [expected behavior]
-```
+### Scenario 3: [Edge Case]
+1. [Edge case context and setup]
+2. [User performs action]
+3. [Expected behavior occurs]
 
 ## Technical Requirements
 - [Technical requirement 1]
@@ -127,84 +118,78 @@ So that I can manage my finances efficiently and allocate funds as needed
 ### Description
 Enable customers to transfer funds between their own accounts (e.g., from checking to savings) within the same bank. This is a core banking feature that must be highly reliable, secure, and provide immediate confirmation. The transfer should be instantaneous and reflect in both accounts immediately.
 
-### Acceptance Criteria (Gherkin Format)
+### Acceptance Criteria
 
-```gherkin
-Feature: Internal Fund Transfer
-  As a banking customer
-  I want to transfer money between my accounts
-  So that I can manage my finances efficiently
+#### Prerequisites
+- Customer must be logged into the banking application
+- Customer must have completed MFA authentication
+- Fraud detection system must be operational and monitoring transactions
+- Customer must have at least two active accounts
 
-  Background:
-    Given the customer is logged into the banking application
-    And the customer has been authenticated with MFA
-    And fraud detection system is operational
+#### Scenario 1: Successful Transfer Between Own Accounts
+1. Customer has a checking account with balance $5000 and savings account with balance $1000
+2. Customer navigates to "Transfer Funds" page
+3. Customer selects checking account (ending in "1234") as source
+4. Customer selects savings account (ending in "5678") as destination
+5. Customer enters transfer amount "$500" and description "Monthly savings"
+6. Customer clicks "Continue" button
+7. System displays transfer preview showing source account, destination account, and amount $500.00
+8. Customer reviews details and clicks "Confirm Transfer"
+9. System prompts for MFA verification
+10. Customer completes MFA verification successfully
+11. System processes transfer immediately
+12. Checking account balance updates to $4500 and savings account updates to $1500
+13. System displays confirmation message "Transfer successful"
+14. Transaction appears in both account transaction histories
+15. System sends confirmation email within 30 seconds
+16. System sends confirmation SMS within 30 seconds
 
-  Scenario: Successful transfer between own accounts
-    Given the customer has a checking account with balance $5000
-    And the customer has a savings account with balance $1000
-    When the customer navigates to "Transfer Funds" page
-    And selects checking account as source
-    And selects savings account as destination
-    And enters transfer amount "$500"
-    And enters description "Monthly savings"
-    And clicks "Continue" button
-    Then transfer preview should be displayed
-    And preview should show source account ending in "1234"
-    And preview should show destination account ending in "5678"
-    And preview should show amount "$500.00"
-    When customer clicks "Confirm Transfer"
-    Then MFA verification prompt should appear
-    When customer completes MFA verification successfully
-    Then transfer should be processed immediately
-    And checking account balance should be $4500
-    And savings account balance should be $1500
-    And confirmation message should display "Transfer successful"
-    And transaction should appear in both account histories
-    And confirmation email should be sent within 30 seconds
-    And confirmation SMS should be sent within 30 seconds
+#### Scenario 2: Transfer with Insufficient Funds
+1. Customer has checking account with balance $100 and savings account with balance $1000
+2. Customer attempts to transfer $500 from checking account
+3. System validates available balance
+4. System displays error message "Insufficient funds"
+5. Transfer is not processed
+6. Account balances remain unchanged ($100 checking, $1000 savings)
+7. No notifications are sent
 
-  Scenario: Transfer with insufficient funds
-    Given the customer has a checking account with balance $100
-    And the customer has a savings account with balance $1000
-    When the customer attempts to transfer $500 from checking
-    Then error message should display "Insufficient funds"
-    And transfer should not be processed
-    And account balances should remain unchanged
-    And no notification should be sent
+#### Scenario 3: Transfer with Invalid Amount
+1. Customer is on the transfer page
+2. Customer enters amount "$0.00"
+3. System displays error message "Amount must be greater than $0"
+4. "Continue" button is disabled until valid amount is entered
+5. Customer enters negative amount "$-100"
+6. System displays error message "Invalid amount"
+7. Transfer cannot proceed until valid positive amount is entered
 
-  Scenario: Transfer with invalid amount
-    Given the customer is on the transfer page
-    When the customer enters amount "$0.00"
-    Then error message should display "Amount must be greater than $0"
-    And "Continue" button should be disabled
-    When the customer enters amount "$-100"
-    Then error message should display "Invalid amount"
+#### Scenario 4: Transfer Exceeds Daily Limit
+1. Customer has daily transfer limit of $10,000
+2. Customer has already transferred $9,500 today
+3. Customer attempts to transfer $1,000 (total would be $10,500)
+4. System validates against daily limit
+5. System displays warning message "This transfer will exceed your daily limit of $10,000"
+6. Option to proceed with transfer is not available
+7. Customer is prompted to contact support or wait until next day
 
-  Scenario: Transfer exceeds daily limit
-    Given the customer has daily transfer limit of $10,000
-    And the customer has already transferred $9,500 today
-    When the customer attempts to transfer $1,000
-    Then warning message should display "This transfer will exceed your daily limit of $10,000"
-    And option to proceed should not be available
-    And customer should be prompted to contact support
+#### Scenario 5: Transfer Requires Fraud Verification
+1. Customer typically transfers small amounts (under $500)
+2. Customer attempts to transfer $5,000 (unusually large amount)
+3. Fraud detection system flags transaction as unusual activity
+4. System requires additional verification before proceeding
+5. Customer receives phone call or SMS with verification code
+6. Customer must enter verification code
+7. Transfer only proceeds after successful verification
+8. Customer is notified this was a security measure
 
-  Scenario: Transfer requires fraud verification
-    Given the customer typically transfers small amounts
-    When the customer attempts to transfer $5,000
-    And fraud detection flags this as unusual
-    Then additional verification should be required
-    And customer should receive phone call or SMS with code
-    And transfer should only proceed after verification
-
-  Scenario: System unavailable during transfer
-    Given the customer has initiated a transfer
-    When a system error occurs during processing
-    Then error message should display "Transfer could not be completed. Please try again."
-    And transfer should be rolled back
-    And account balances should remain unchanged
-    And incident should be logged for investigation
-```
+#### Scenario 6: System Unavailable During Transfer
+1. Customer initiates a transfer and submits confirmation
+2. System begins processing the transfer
+3. System error or service outage occurs during processing
+4. System detects failure and rolls back transaction
+5. System displays error message "Transfer could not be completed. Please try again."
+6. Account balances remain unchanged (no partial transfer)
+7. Incident is logged with timestamp, user ID, and error details for investigation
+8. Customer receives notification that transfer failed and funds are secure
 
 ### Technical Requirements
 - **API Endpoint:** POST /api/v1/transfers/internal

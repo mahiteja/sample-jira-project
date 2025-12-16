@@ -59,8 +59,8 @@ Epic (Strategic Initiative)
 - **Purpose:** Native test management for JIRA
 - **Key Features:**
   - Manual and automated test case management
-  - BDD (Behavior-Driven Development) support with Gherkin syntax
-  - AI-powered test case generation from requirements
+  - Test case generation from requirements
+  - AI-powered test scenario suggestions
   - Full traceability between requirements, tests, and defects
   - Test Plans and Test Executions
   - REST API for CI/CD integration
@@ -74,46 +74,57 @@ Epic (Strategic Initiative)
 
 ### Acceptance Criteria Format for XRay
 
-#### **Gherkin/BDD Format (Recommended for XRay)**
-```gherkin
+#### **Plain English Acceptance Criteria (Recommended for XRay)**
+```
 Feature: Account Login
   As a banking customer
   I want to securely log into my account
   So that I can access my financial information
 
-  Background:
-    Given the user is on the login page
-    And the system is operational
+Prerequisites:
+- User is on the login page
+- System is operational
 
-  Scenario: Successful login with valid credentials
-    Given the user has a valid username "john.doe@email.com"
-    And the user has a valid password
-    When the user enters their credentials
-    And clicks the "Login" button
-    Then the user should be redirected to the dashboard
-    And the user's account balance should be displayed
-    And a welcome message should appear
+Scenario: Successful login with valid credentials
+1. User has a valid username "john.doe@email.com" and password
+2. User enters their credentials
+3. User clicks the "Login" button
+4. User should be redirected to the dashboard
+5. User's account balance should be displayed
+6. Welcome message should appear
 
-  Scenario: Failed login with invalid credentials
-    Given the user has an invalid password
-    When the user enters their credentials
-    And clicks the "Login" button
-    Then an error message "Invalid credentials" should appear
-    And the user should remain on the login page
-    And the account should not be locked after first attempt
+Scenario: Failed login with invalid credentials
+1. User has an invalid password
+2. User enters their credentials
+3. User clicks the "Login" button
+4. Error message "Invalid credentials" should appear
+5. User should remain on the login page
+6. Account should not be locked after first attempt
 ```
 
-#### **Traditional Acceptance Criteria Format**
+#### **Alternative Simple Format**
 ```
-Given [precondition]
-When [action]
-Then [expected result]
+Prerequisites:
+- [Required precondition 1]
+- [Required precondition 2]
+
+Steps:
+1. [Action step 1]
+2. [Action step 2]
+3. [Expected result]
 
 Example:
-- Given the user is on the transfer funds page
-- When the user enters amount exceeding available balance
-- Then an error message should display "Insufficient funds"
-- And the transfer should not be processed
+Prerequisites:
+- User is logged in
+- User is on the transfer funds page
+- User's account balance is $100
+
+Steps:
+1. User enters amount exceeding available balance ($500)
+2. User clicks "Continue" button
+3. System displays error message "Insufficient funds"
+4. Transfer does not proceed
+5. Account balance remains unchanged at $100
 ```
 
 ### XRay Benefits for Banking Applications
@@ -230,16 +241,19 @@ Example:
 6. Terms and conditions acceptance
 
 **Acceptance Criteria Example:**
-```gherkin
-Feature: Customer Registration
-  Scenario: New customer registers successfully
-    Given a new user visits the registration page
-    When they provide valid personal information
-    And they upload required KYC documents
-    And they set up strong password and MFA
-    Then their account should be created in pending status
-    And they should receive verification email
-    And KYC verification workflow should be initiated
+```
+Prerequisites:
+- Registration page is accessible
+- KYC verification system is operational
+
+Scenario: New customer registers successfully
+1. New user visits the registration page
+2. User provides valid personal information
+3. User uploads required KYC documents
+4. User sets up strong password and MFA
+5. Account should be created in pending status
+6. User should receive verification email
+7. KYC verification workflow should be initiated
 ```
 
 ---
@@ -256,15 +270,17 @@ Feature: Customer Registration
 7. Close account
 
 **Acceptance Criteria Example:**
-```gherkin
-Feature: View Account Balance
-  Scenario: Customer views current balance
-    Given the customer is logged into their account
-    When they navigate to the accounts page
-    Then they should see all linked accounts
-    And each account should display current balance
-    And last transaction date should be visible
-    And account should show available vs pending balance
+```
+Prerequisites:
+- Customer is logged into their account
+- Customer has one or more linked accounts
+
+Scenario: Customer views current balance
+1. Customer navigates to the accounts page
+2. Customer should see all linked accounts
+3. Each account should display current balance
+4. Last transaction date should be visible
+5. Account should show available vs pending balance
 ```
 
 ---
@@ -282,18 +298,20 @@ Feature: View Account Balance
 8. Transaction limits and controls
 
 **Acceptance Criteria Example:**
-```gherkin
-Feature: Internal Fund Transfer
-  Scenario: Transfer between own accounts
-    Given the customer has multiple accounts with sufficient balance
-    When they select source and destination accounts
-    And enter a valid transfer amount
-    And provide transfer description
-    And confirm the transaction with MFA
-    Then funds should be debited from source account
-    And funds should be credited to destination account
-    And transaction confirmation should be sent via email/SMS
-    And transaction should appear in history immediately
+```
+Prerequisites:
+- Customer has multiple accounts with sufficient balance
+- MFA is set up and operational
+
+Scenario: Transfer between own accounts
+1. Customer selects source and destination accounts
+2. Customer enters a valid transfer amount
+3. Customer provides transfer description
+4. Customer confirms the transaction with MFA
+5. Funds should be debited from source account
+6. Funds should be credited to destination account
+7. Transaction confirmation should be sent via email/SMS
+8. Transaction should appear in history immediately
 ```
 
 ---
@@ -325,16 +343,18 @@ Feature: Internal Fund Transfer
 8. Two-factor authentication for high-value transactions
 
 **Acceptance Criteria Example:**
-```gherkin
-Feature: Fraud Detection
-  Scenario: Suspicious transaction detected
-    Given fraud detection system is monitoring transactions
-    When a transaction is attempted from unusual location
-    And transaction amount is higher than user's pattern
-    Then transaction should be temporarily held
-    And customer should receive immediate alert via SMS
-    And customer should be required to verify transaction
-    And transaction should only proceed after verification
+```
+Prerequisites:
+- Fraud detection system is monitoring transactions
+- Customer has SMS notifications enabled
+
+Scenario: Suspicious transaction detected
+1. Transaction is attempted from unusual location
+2. Transaction amount is higher than user's typical pattern
+3. Transaction should be temporarily held
+4. Customer should receive immediate alert via SMS
+5. Customer should be required to verify transaction
+6. Transaction should only proceed after verification
 ```
 
 ---
@@ -425,7 +445,7 @@ Feature: Fraud Detection
 ### XRay Specific Fields
 - **Test Type** - Manual, Automated, Generic, Cucumber
 - **Test Steps** - For manual tests
-- **Gherkin Definition** - For BDD tests
+- **Acceptance Criteria** - Numbered test steps in plain English
 - **Precondition** - Reference to precondition
 - **Requirement** - Link to user story
 
@@ -434,10 +454,7 @@ Feature: Fraud Detection
 ```csv
 Summary,Issue Type,Description,Epic Name,Epic Link,Priority,Status,Assignee,Reporter,Labels,Acceptance Criteria
 "Customer Onboarding & Authentication",Epic,"Enable secure customer registration and identity verification",,,,To Do,,,onboarding;security,
-"User Registration",Story,"As a new customer, I want to register for online banking so that I can access my accounts digitally","Customer Onboarding & Authentication",EPIC-1,High,To Do,dev@bank.com,pm@bank.com,registration;kyc,"Given a new user on registration page
-When they provide valid information
-Then account should be created
-And verification email sent"
+"User Registration",Story,"As a new customer, I want to register for online banking so that I can access my accounts digitally","Customer Onboarding & Authentication",EPIC-1,High,To Do,dev@bank.com,pm@bank.com,registration;kyc,"Prerequisites: User on registration page\n1. User provides valid information\n2. User submits registration\n3. Account should be created\n4. Verification email should be sent"
 "Implement registration API",Task,"Create REST API endpoint for user registration","User Registration",,Medium,To Do,backend-dev@bank.com,,,api;backend,
 ```
 
@@ -597,11 +614,11 @@ sample-jira-project/
 ### For Test Management
 1. **XRay (JIRA Plugin)**
    - Native JIRA integration
-   - BDD support
+   - Plain English test case support
    - AI test generation
 
 2. **Automation Frameworks Compatible with XRay**
-   - Cucumber (BDD)
+   - Cucumber (for behavior-driven tests)
    - JUnit / TestNG
    - Selenium
    - Robot Framework
@@ -624,20 +641,25 @@ As a banking customer
 I want to view my account balance
 So that I can monitor my finances
 
+Prerequisites:
+- User is logged into the banking app
+- User has one or more linked accounts
+
 Acceptance Criteria:
-1. Given I am logged into the banking app
-   When I navigate to the accounts page
-   Then I should see all my linked accounts
-   And each account should display the current balance
+1. User navigates to the accounts page
+2. User should see all linked accounts
+3. Each account should display the current balance
 
-2. Given I have multiple currency accounts
-   When I view my accounts
-   Then balances should be displayed in respective currencies
-   And an equivalent total in base currency should be shown
+Scenario: Multiple currency accounts
+1. User has multiple currency accounts
+2. User views accounts page
+3. Balances should be displayed in respective currencies
+4. An equivalent total in base currency should be shown
 
-3. Given the system is updating balances
-   When I refresh the page
-   Then I should see the updated balance within 2 seconds
+Scenario: Real-time balance updates
+1. System is updating balances
+2. User refreshes the page
+3. User should see the updated balance within 2 seconds
 
 Technical Requirements:
 - API response time < 500ms
@@ -658,24 +680,23 @@ As a banking customer
 I want to transfer money between my accounts
 So that I can manage my finances efficiently
 
+Prerequisites:
+- User has multiple accounts with sufficient balance
+- MFA is set up and operational
+
 Acceptance Criteria:
-1. Given I have multiple accounts with sufficient balance
-   When I initiate a transfer
-   Then I should be able to select source and destination accounts
-   And enter the transfer amount
-   And add optional description
-
-2. Given I enter transfer details
-   When I submit the transfer
-   Then I should be prompted for MFA verification
-   And transaction should not proceed without verification
-
-3. Given I complete MFA verification
-   When the transfer is processed
-   Then funds should be debited from source immediately
-   And funds should be credited to destination immediately
-   And I should receive confirmation via email and SMS
-   And transaction should appear in both account histories
+1. User initiates a transfer
+2. User should be able to select source and destination accounts
+3. User enters the transfer amount
+4. User adds optional description
+5. User submits the transfer
+6. User should be prompted for MFA verification
+7. Transaction should not proceed without verification
+8. User completes MFA verification
+9. Funds should be debited from source immediately
+10. Funds should be credited to destination immediately
+11. User should receive confirmation via email and SMS
+12. Transaction should appear in both account histories
 
 Security Requirements:
 - MFA required for transfers > $500
@@ -800,7 +821,7 @@ Every banking user story should address:
 ### Tools to Create
 1. **CSV Generation Script** (Python)
    - Generate epics from template
-   - Generate stories with Gherkin format
+   - Generate stories with plain English acceptance criteria
    - Auto-assign IDs and links
 
 2. **Story Validator Script**
@@ -821,14 +842,14 @@ Every banking user story should address:
 This research provides a comprehensive foundation for building a JIRA project structure for a banking application. The key recommendations are:
 
 1. **Use CSV Format** for initial import (1500 issues at a time)
-2. **Implement XRay** for test management with Gherkin/BDD format
+2. **Implement XRay** for test management with plain English acceptance criteria
 3. **Follow 10 Epic structure** covering all banking domains
 4. **Include compliance** labels and criteria in every story
 5. **Use phased roadmap** approach (5 phases over 10 months)
 
 ### Critical Success Factors
 - ✅ Security and compliance in every story
-- ✅ Clear acceptance criteria with Gherkin format
+- ✅ Clear acceptance criteria with numbered test steps
 - ✅ Traceability from Epic → Story → Task → Test
 - ✅ Regulatory requirements documented
 - ✅ XRay integration for test management
@@ -856,13 +877,13 @@ Summary,Issue Type,Description,Priority,Labels,Story Points
 ### Stories CSV Structure
 ```csv
 Summary,Issue Type,Description,Epic Link,Priority,Labels,Acceptance Criteria,Story Points
-"User Registration","Story","As a new customer, I want to register for online banking so that I can access my accounts digitally","EPIC-1","High","registration,kyc","Feature: Customer Registration\nScenario: New customer registers\nGiven a new user visits registration page\nWhen they provide valid information\nThen account should be created\nAnd verification email sent",8
+"User Registration","Story","As a new customer, I want to register for online banking so that I can access my accounts digitally","EPIC-1","High","registration,kyc","Prerequisites: User on registration page\n1. User provides valid information\n2. User uploads required KYC documents\n3. Account should be created in pending status\n4. Verification email should be sent\n5. KYC verification workflow initiated",8
 ```
 
 ### XRay Test CSV Structure
 ```csv
-Summary,Issue Type,Test Type,Description,Requirement,Gherkin Definition,Priority
-"Test User Registration","Test","Cucumber","Verify user can successfully register","STORY-1","Feature: User Registration\nScenario: Successful registration\nGiven user on registration page\nWhen enters valid details\nThen account is created","High"
+Summary,Issue Type,Test Type,Description,Requirement,Acceptance Criteria,Priority
+"Test User Registration","Test","Manual","Verify user can successfully register","STORY-1","Prerequisites: User on registration page\n1. User enters valid details\n2. User submits registration\n3. Account is created\n4. Confirmation email is sent","High"
 ```
 
 ---

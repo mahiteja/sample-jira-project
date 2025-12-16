@@ -11,7 +11,7 @@ sample-jira-project/
 ├── RESEARCH_SUMMARY.md                 # Comprehensive research document
 ├── csv/                                # JIRA import CSV files
 │   ├── epics.csv                       # 10 banking domain epics
-│   ├── stories.csv                     # Sample user stories with Gherkin
+│   ├── stories.csv                     # Sample user stories with plain English acceptance criteria
 │   ├── tasks_sample.csv                # Sample technical tasks
 │   └── xray_tests_sample.csv           # Sample XRay test cases
 ├── templates/                          # Templates for creating new issues
@@ -94,16 +94,16 @@ Every story includes:
 - ✅ Regulatory considerations
 - ✅ Audit trail requirements
 
-### Gherkin/BDD Format
-All acceptance criteria use **Gherkin syntax** for:
-- Clear, testable requirements
-- XRay integration for automated testing
+### Plain English Acceptance Criteria
+All acceptance criteria use **numbered step format** for:
+- Clear, testable requirements that anyone can understand
+- Easy-to-follow test scenarios
 - Collaboration between business and technical teams
-- AI test case generation support
+- Straightforward validation without technical jargon
 
 ### XRay Test Management
 - Manual and automated test cases
-- BDD/Cucumber support with Gherkin scenarios
+- Test scenarios with numbered steps
 - Full traceability: Epic → Story → Task → Test
 - CI/CD integration ready
 
@@ -184,7 +184,7 @@ Follow similar process for tasks and XRay tests.
 Use the templates in `templates/` directory to create new issues:
 
 - **[Epic Template](templates/epic-template.md)** - Complete epic structure with example
-- **[User Story Template](templates/user-story-template.md)** - Story with Gherkin acceptance criteria
+- **[User Story Template](templates/user-story-template.md)** - Story with plain English acceptance criteria
 - **[XRay Test Template](templates/xray-test-template.md)** - Manual and automated test cases
 
 ## CSV Field Mappings
@@ -219,7 +219,7 @@ Use the templates in `templates/` directory to create new issues:
 | Issue Type | Test | Yes |
 | Test Type | Test Type (Manual/Cucumber/etc) | Yes |
 | Requirement | Requirement Link | No |
-| Gherkin Definition | Test Definition | No |
+| Test Steps | Test Definition | No |
 | Priority | Priority | No |
 
 ## Best Practices
@@ -234,10 +234,13 @@ Use the templates in `templates/` directory to create new issues:
    - **S**mall
    - **T**estable
 
-3. **Gherkin Format:**
-   ```gherkin
-   Feature: Feature Name
+3. **Numbered Step Format:**
+   ```
+   Prerequisites:
+   - [Required conditions]
+   
    Scenario: Scenario Name
+   1. [Step description]
      Given [precondition]
      When [action]
      Then [expected result]
@@ -277,7 +280,7 @@ Every banking story should address:
 
 ### XRay Documentation
 - [XRay Documentation](https://docs.getxray.app/)
-- [Gherkin Syntax Guide](https://cucumber.io/docs/gherkin/)
+- [Writing Acceptance Criteria](https://www.atlassian.com/agile/project-management/user-stories)
 - [XRay Cucumber Integration](https://docs.getxray.app/display/XRAYCLOUD/Generate+Cucumber+Features)
 
 ### Banking Regulations
@@ -296,26 +299,28 @@ Every banking story should address:
 ### Adding New Stories
 1. Review [`templates/user-story-template.md`](templates/user-story-template.md)
 2. Write story in "As a [user], I want [feature], so that [benefit]" format
-3. Add Gherkin acceptance criteria
+3. Add numbered acceptance criteria
 4. Include security and compliance requirements
 5. Add to `csv/stories.csv` with Epic Link
 
 ### Modifying Acceptance Criteria
-Use Gherkin format for all acceptance criteria:
-```gherkin
-Feature: [Feature Name]
-  Background:
-    Given [common precondition]
-  
-  Scenario: [Happy path]
-    Given [initial state]
-    When [action]
-    Then [result]
-  
-  Scenario: [Error case]
-    Given [initial state]
-    When [invalid action]
-    Then [error handling]
+Use numbered step format for all acceptance criteria:
+```
+Prerequisites:
+- [Common precondition 1]
+- [Common precondition 2]
+
+Scenario: [Happy path]
+1. [Initial setup and state]
+2. [User performs action]
+3. [Expected result occurs]
+4. [Verification step]
+
+Scenario: [Error case]
+1. [Initial setup and state]
+2. [User performs invalid action]
+3. [System displays error message]
+4. [Error is handled gracefully]
 ```
 
 ## Estimated Effort

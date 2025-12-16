@@ -11,7 +11,7 @@ sample-jira-project/
 ├── QUICK_START.md              ⭐ This file
 ├── csv/
 │   ├── epics.csv               ✅ 10 banking epics ready to import
-│   └── stories.csv             ✅ 15 sample stories with Gherkin
+│   └── stories.csv             ✅ 15 sample stories with plain English acceptance criteria
 ├── templates/
 │   ├── epic-template.md        📝 Reusable epic template
 │   ├── user-story-template.md  📝 Story template with examples
@@ -116,7 +116,7 @@ sample-jira-project/
 ```
 1. Create Test issue
 2. In "Requirement" field, link to Story
-3. Add Gherkin definition in "Test Details"
+3. Add test steps in "Test Details"
 4. Tests now show in Story's "Tests" tab
 ```
 
@@ -135,11 +135,15 @@ I want [feature]
 So that [benefit]
 
 Acceptance Criteria:
-Feature: [Feature Name]
-  Scenario: [Happy path]
-    Given [precondition]
-    When [action]
-    Then [expected result]
+Prerequisites:
+- [Precondition that must be met]
+- [Another precondition]
+
+Scenario: [Happy path]
+1. [Initial setup and context]
+2. [User performs action]
+3. [System responds]
+4. [Expected result is verified]
 
 Labels: [feature-area],[component],[compliance],[phase]
 Story Points: [1,2,3,5,8,13,21]
@@ -148,15 +152,16 @@ Epic Link: EPIC-[number]
 
 ### Quick Test Creation (XRay)
 ```
-Test Type: Cucumber
+Test Type: Manual or Automated
 Requirement: STORY-X
-Gherkin:
-  @story-x @smoke
-  Feature: Test [Feature]
-  Scenario: [Test case]
-    Given [setup]
-    When [action]
-    Then [verify]
+Tags: story-x, smoke
+Test Scenario:
+  Setup:
+  - [Precondition setup]
+  Steps:
+  1. [Action to perform]
+  2. [Expected result]
+  3. [Verification step]
 ```
 
 ---
@@ -198,7 +203,7 @@ critical, security-critical, compliance-required
 Before marking story as "Ready for Development":
 
 - [ ] **User story format:** "As a [user], I want [feature], so that [benefit]"
-- [ ] **Gherkin acceptance criteria:** Given/When/Then scenarios
+- [ ] **Numbered acceptance criteria:** Clear step-by-step scenarios with prerequisites
 - [ ] **Security requirements:** Auth, encryption, audit logging
 - [ ] **Compliance tags:** KYC, AML, GDPR, etc.
 - [ ] **Performance criteria:** Response times, SLAs
@@ -330,10 +335,10 @@ Create dashboards for:
 - [Scrum Guide](https://scrumguides.org/)
 - [User Story Writing](https://www.atlassian.com/agile/project-management/user-stories)
 
-### XRay & BDD
+### XRay & Testing
 - [XRay Documentation](https://docs.getxray.app/)
-- [Cucumber/Gherkin Tutorial](https://cucumber.io/docs/gherkin/)
-- [BDD Best Practices](https://cucumber.io/docs/bdd/)
+- [Test Case Writing Best Practices](https://www.atlassian.com/software/jira/guides/testing)
+- [Acceptance Criteria Guide](https://www.atlassian.com/agile/project-management/user-stories)
 
 ### Banking Domain
 - [KYC/AML Guidelines](https://www.ffiec.gov/)
@@ -365,12 +370,13 @@ Create dashboards for:
 - Check "Requirement" field links to correct story
 - Enable "Tests" tab in story view
 
-### Gherkin Not Formatting
-**Problem:** Acceptance criteria shows as plain text
+### Acceptance Criteria Not Clear
+**Problem:** Acceptance criteria difficult to understand
 **Solution:**
-- For XRay tests: Use "Gherkin Definition" field
-- For stories: Use code block formatting
-- Consider custom field for acceptance criteria
+- Use numbered steps for clarity
+- Start with prerequisites section
+- Break complex scenarios into smaller ones
+- Consider custom field for structured acceptance criteria
 
 ---
 
@@ -418,7 +424,7 @@ After 1 month, you should have:
 - ✅ 2-3 sprints completed
 - ✅ Velocity baseline established
 - ✅ XRay integrated and tests running
-- ✅ Team trained on Gherkin format
+- ✅ Team trained on writing clear acceptance criteria
 
 After 3 months (Phase 1 complete):
 - ✅ User registration and auth live
